@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import LogIn from './Components/LogIn';
-import TopBar from './Components/TopBar';
-
+import App from './Components/App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <><TopBar /><LogIn /></>
+    <App/>
   </React.StrictMode>
 );
 
