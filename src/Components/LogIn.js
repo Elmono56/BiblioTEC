@@ -33,7 +33,7 @@ const LogIn = () => {
           src={map}
           loading="lazy"
           allowFullScreen=""
-          referrerPolicy="no-referrer-when-downgrade"
+          referrerpolicy="no-referrer-when-downgrade"
           id="map"
           title="Mapa Biblioteca José Figueres Ferrer"
         ></iframe>
