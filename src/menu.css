@@ -1,0 +1,22 @@
+#menu-btns{
+    position: absolute;
+    margin-top: 20%;
+    /*This is a group of buttons just. Make his distribution and colors prettier*/
+
+}
+.est-chooseOption{
+    background-color: #0e0637;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-bottom: 1%;
+    transition: transform 0.3s ease-in-out;
+
+}
+.est-chooseOption:hover {
+    background-color: #6a5acd;
+    cursor: pointer;
+    transform: scale(1.1);
+  }

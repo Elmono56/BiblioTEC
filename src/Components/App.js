@@ -1,14 +1,19 @@
 import React from "react";
-import TopBar from "./TopBar";
 import LogIn from "./LogIn";
-const onClickLogIn = () => {
-    console.log("LogIn");
-}
+import { Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter } from "react-router-dom";
+import TopBar from "./TopBar";
+import Menu from "./Menu";
+
 const App = () => {
     return (
-        <>
-        <TopBar /><LogIn />
-        </>
+        <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LogIn />} />
+          <Route path="/menu" element={<Menu />} />
+        </Routes>
+      </BrowserRouter>
+        
     );
 };
 export default App;

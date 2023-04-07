@@ -17,7 +17,10 @@
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
+    width: 120px;
+    height: 50px;
+    margin-left: 15%;
+  
     font-family: "Roboto", sans-serif;
 }
 #top-bar{
@@ -32,10 +35,10 @@
 }
 #logoTEC{
   /*Resize the image*/
-  width: 250px;
-  height: 75px;
+  width: 240px;
+  height: 60px;
   /*Put the image down*/
-  margin-top: 85px;
+  margin-top: 5.5%;
   margin-left: 50px;
 }
 #appTitle, #appDescription{
