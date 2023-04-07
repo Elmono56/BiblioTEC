@@ -6,6 +6,7 @@ import MenuAdmin from "./MenuAdmin";
 import ReportAdmin from "./ReportAdmin";
 import AddCubiculo from "./AddCubiculo";
 import ReservarCubiculo from "./ReservarCubiculo";
+import DeleteStudent from "./DeleteStudent";
 
 const App = () => {
 	return (
@@ -16,7 +17,7 @@ const App = () => {
 				<Route path="/menu/reservarCubiculo" element={<ReservarCubiculo/>} />
 				<Route path="/menuAdmin" element={<MenuAdmin />} />
 				<Route path="/menuAdmin/reportAdmin" element={<ReportAdmin />} />
-				<Route path="/menuAdmin/agregarCubiculo" element={<ReservarCubiculo/>} />
+				<Route path="/menuAdmin/agregarCubiculo" element={<AddCubiculo/>} />
 			</Routes>
 		</BrowserRouter>
 	);
