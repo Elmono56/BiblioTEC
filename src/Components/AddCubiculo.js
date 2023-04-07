@@ -10,9 +10,20 @@ const AddCubiculo = () => {
             <TopBar />
             <div id="menu-btns">
                 <h1 className="page-title">Agregar Cubiculo</h1>
-                {/*<div id="report-content">
-					{/* Agrega aquí el contenido del cubiculo
-				</div>*/}
+                <form>
+                    <label>
+                        Numero de cubiculo:
+                        <input type="text" name="name" min="39" required/><br></br><br></br>
+                    </label>
+                    <label>
+                        Capacidad de personas:
+                        <input type="text" name="name" /><br></br><br></br>
+                    </label>
+                    <label>
+                        Cubiculo accesible:
+                        <input type="checkbox" name="name" /><br></br><br></br>
+                    </label>
+                </form>
                 <button className='est-chooseOption'>
                     Agregar
                 </button>
