@@ -1,7 +1,9 @@
+body{
+    overflow: auto;
+  }
 #menu-btns{
     position: absolute;
     margin-top: 20%;
-    /*This is a group of buttons just. Make his distribution and colors prettier*/
 
 }
 .est-chooseOption{

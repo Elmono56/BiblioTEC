@@ -13,6 +13,7 @@ const App = () => {
 				<Route path="/menu" element={<Menu />} />
 				<Route path="/menuAdmin" element={<MenuAdmin />} />
 				<Route path="/menuAdmin/reportAdmin" element={<ReportAdmin />} />
+				<Route path="/menuAdmin/agregarCubiculo" element={<ReportAdmin />} />
 			</Routes>
 		</BrowserRouter>
 

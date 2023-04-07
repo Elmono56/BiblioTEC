@@ -12,7 +12,7 @@ const ReportAdmin = () => {
 				{/*<div id="report-content">
 					{/* Agrega aquí el contenido del informe 
 				</div>*/}
-				<button onClick={() => navigate('../')} className='est-chooseOption'>
+				<button onClick={() => navigate('/menuAdmin')} className='est-chooseOption'>
 					Regresar
 				</button>
 			</div>

@@ -10,7 +10,7 @@ const LogIn = () => {
 		setLoggedIn(true);
 	};
 	if (loggedIn) {
-		return navigate('/menuAdmin');
+		return navigate('/menuAdmin/');
 	}
 	return (
 		<>
@@ -19,11 +19,11 @@ const LogIn = () => {
 				<form onSubmit={onClickLogIn}>
 					<label htmlFor="username">Usuario </label>
 					<br></br>
-					<input type="text" id="username" name="username" />
+					<input type="text" id="username" name="username" className='loginBoxes' />
 					<br></br>
 					<label htmlFor="password">Contraseña </label>
 					<br></br>
-					<input type="password" id="password" name="password" />
+					<input type="password" id="password" name="password" className='loginBoxes'/>
 					<br></br>
 					<input type="submit" value="Iniciar sesión" id={"login-btn"} />
 				</form>
