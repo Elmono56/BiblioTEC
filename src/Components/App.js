@@ -1,7 +1,6 @@
 import React from "react";
 import LogIn from "./LogIn";
-import { Route, Routes } from 'react-router-dom';
-import { BrowserRouter } from "react-router-dom";
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import Menu from "./Menu";
 import MenuAdmin from "./MenuAdmin";
 import ReportAdmin from "./ReportAdmin";
