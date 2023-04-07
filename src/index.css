@@ -35,7 +35,7 @@ body{
 #appTitle, #appDescription{
   /*Put the text down*/
   font-family: "Roboto", sans-serif;
-}
+} 
 #appTitle{
   margin-left: 70%;
   font-size: 45px;
