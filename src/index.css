@@ -31,6 +31,10 @@ body{
   /*Put the image down*/
   margin-top: 5.5%;
   margin-left: 50px;
+  transition: transform 0.2s ease-out;
+}
+#logoTEC:hover{
+  transform: scale(1.1);
 }
 #appTitle, #appDescription{
   /*Put the text down*/
