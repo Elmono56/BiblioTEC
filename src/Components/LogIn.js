@@ -10,7 +10,7 @@ const LogIn = () => {
 		setLoggedIn(true);
 	};
 	if (loggedIn) {
-		return navigate('/menuAdmin/');
+		return navigate('/menu');
 	}
 	return (
 		<>
