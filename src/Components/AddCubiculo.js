@@ -1,5 +1,4 @@
 import React from "react";
-import { ReactDOM } from "react-dom/client";
 import TopBar from "./TopBar";
 const AddCubiculo = () => {
     return (

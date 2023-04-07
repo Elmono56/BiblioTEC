@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import Menu from "./Menu";
 import MenuAdmin from "./MenuAdmin";
 import ReportAdmin from "./ReportAdmin";
+import AddCubiculo from "./AddCubiculo";
 
 const App = () => {
 	return (
@@ -14,7 +15,7 @@ const App = () => {
 				<Route path="/menu" element={<Menu />} />
 				<Route path="/menuAdmin" element={<MenuAdmin />} />
 				<Route path="/menuAdmin/reportAdmin" element={<ReportAdmin />} />
-				<Route path="/menuAdmin/agregarCubiculo" element={<ReportAdmin />} />
+				<Route path="/menuAdmin/agregarCubiculo" element={<AddCubiculo/>} />
 			</Routes>
 		</BrowserRouter>
 
