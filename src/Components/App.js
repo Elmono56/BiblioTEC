@@ -4,6 +4,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { BrowserRouter } from "react-router-dom";
 import TopBar from "./TopBar";
 import Menu from "./Menu";
+import MenuAdmin from "./MenuAdmin";
 
 const App = () => {
     return (
@@ -11,6 +12,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<LogIn />} />
           <Route path="/menu" element={<Menu />} />
+          <Route path="/menuAdmin" element={<MenuAdmin />} />
         </Routes>
       </BrowserRouter>
         
