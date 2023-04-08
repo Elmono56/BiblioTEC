@@ -596,7 +596,7 @@ GO
 
 
 DELIMITER//
-CREATE PROCEDURE CRUDS_Administradores
+CREATE PROCEDURE CRUD_Administradores
 	@pCodAdmin INT,
 	@pIdentPers INT, 
 	@pCorreo VARCHAR(50), 
@@ -663,6 +663,12 @@ SET @msgError = '';
 				SELECT @msgError;
 			END
 
+			IF (@pIdentPers IS NOT NULL AND (SELECT COUNT(*) FROM Personas WHERE identPers = @pIdentPers) = 0)
+			BEGIN
+				SET @msgError = 'No existe persona registrada asociada a esa identificacion';
+				SELECT @msgError;
+			END
+
 			IF (@pCorreo = '') 
 			BEGIN
 				SET @msgError = 'El correo es inválido';
@@ -715,7 +721,7 @@ GO
 
 
 DELIMITER //
-CREATE PROCEDURE CRUDS_Estudiantes
+CREATE PROCEDURE CRUD_Estudiantes
 	@pNumCarnet INT,
 	@pIdEstadoE INT, 
 	@pCorreo VARCHAR(50), 
@@ -849,7 +855,7 @@ SET @msgError = '';
 				SELECT @msgError;
 			END
 
-			DELETE FROM Estud_Eliminados
+			DELETE FROM Estudiantes
 			WHERE numCarnet = @pNumCarnet;
 			
 		END
@@ -858,6 +864,525 @@ SET @msgError = '';
         
 	ELSE
 		SET @msgError = 'El numero de carnet está vacío';
+        SELECT @msgError;
+	END
+
+END
+GO
+//
+
+
+
+-----------------------------------------------------------------ESTUDIANTES ELIMINADOS--------------------------------------------
+
+
+
+DELIMTER //
+CREATE PROCEDURE CRUD_EstudEli
+	@pIdEstEl INT,
+	@pNumCarnet INT, 
+	@pMotivo VARCHAR(100), 
+	@pFechaE DATE,
+	@pOperacion VARCHAR(10)
+AS
+BEGIN
+
+DECLARE @msgError VARCHAR(70);
+SET @msgError = '';
+
+	IF (@pIdEstEl IS NOT NULL)
+	BEGIN
+
+		IF (@pOperacion = 'CREATE')
+		BEGIN
+
+			IF ((SELECT COUNT(*) FROM Estudiantes WHERE numCarnet = @pNumCarnet) = 0)
+			BEGIN
+				SET @msgError = 'El estudiante no existe';
+				SELECT @msgError;
+			END
+
+			IF (@pMotivo = '' OR @pMotivo IS NULL) 
+			BEGIN
+				SET @msgError = 'El motivo es inválido';
+				SELECT @msgError;
+			END
+
+			IF (@pFechaE IS NULL) 
+			BEGIN
+				SET @msgError = 'La fecha es inválida';
+				SELECT @msgError;
+			END
+
+			INSERT INTO Estud_Eliminados(numCarnet,motivo,fechaE)
+			VALUES (@pNumCarnet, @pMotivo, @pFechaE);
+		
+		END
+
+
+
+		IF (@pOperacion = 'READ')
+		BEGIN
+
+			IF ((SELECT COUNT(*) FROM Estud_Eliminados WHERE idEstEl = @pIdEstEl) = 0)
+			BEGIN
+				SET @msgError = 'El estudiante eliminado no existe, no se puede realizar la busqueda';
+				SELECT @msgError;
+			END
+
+			SELECT * FROM Estud_Eliminados WHERE idEstEl = @pIdEstEl;
+
+		END
+
+
+
+		IF (@pOperacion = 'UPDATE') 
+		BEGIN
+
+			IF ((SELECT COUNT(*) FROM Estud_Eliminados WHERE idEstEl = @pIdEstEl) = 0)
+			BEGIN
+				SET @msgError = 'El estudiante eliminado no existe, no se puede modificar';
+				SELECT @msgError;
+			END
+
+			IF (@pNumCarnet IS NOT NULL AND ((SELECT COUNT(*) FROM Estudiantes WHERE numCarnet = @pNumCarnet) = 0))
+			BEGIN
+				SET @msgError = 'El estudiante no existe';
+				SELECT @msgError;
+			END
+
+			IF (@pMotivo = '') 
+			BEGIN
+				SET @msgError = 'El motivo es inválido';
+				SELECT @msgError;
+			END
+
+			UPDATE Estud_Eliminados
+			SET numCarnet = ISNULL(@pNumCarnet, numCarnet), motivo = ISNULL(@pMotivo, motivo), fechaE = ISNULL(@pFechaE, fechaE)
+			WHERE idEstEl = @pIdEstEl;
+
+		END
+        
+
+
+		IF (@pOperacion = 'DELETE') 
+		BEGIN
+
+			IF ((SELECT COUNT(*) FROM Estud_Eliminados WHERE idEstEl = @pIdEstEl) = 0)
+			BEGIN
+				SET @msgError = 'El estudiante eliminado no existe, no se puede eliminar';
+				SELECT @msgError;
+			END
+
+			DELETE FROM Estud_Eliminados
+			WHERE idEstEl = @pIdEstEl;
+			
+		END
+
+
+        
+	ELSE
+		SET @msgError = 'El id de estudiante eliminado está vacío';
+        SELECT @msgError;
+	END
+
+END
+GO
+//
+
+
+
+-----------------------------------------------------------------RESERVACIONS--------------------------------------------
+
+
+
+DELIMITER //
+CREATE PROCEDURE CRUD_Reservaciones
+	@pIdReserva INT, 
+	@pNumCubi INT,
+	@pNumCarnet INT,
+	@pFechaR DATE,
+	@pHInicio TIME(7),
+	@pHFinal TIME(7),
+	@pOperacion VARCHAR(10)
+AS
+BEGIN
+
+DECLARE @msgError VARCHAR(70);
+SET @msgError = '';
+
+	IF (@pIdReserva IS NOT NULL)
+	BEGIN
+
+		IF (@pOperacion = 'CREATE')
+		BEGIN
+
+			IF ((SELECT COUNT(*) FROM Cubiculos WHERE numCubiculo = @pNumCubi) = 0)
+			BEGIN
+				SET @msgError = 'No existe el cubiculo ingresado';
+				SELECT @msgError;
+			END
+
+			IF ((SELECT COUNT(*) FROM Estudiantes WHERE numCarnet = @pNumCarnet) = 0)
+			BEGIN
+				SET @msgError = 'No existe el estudiante ingresado';
+				SELECT @msgError;
+			END
+
+			IF (@pFechaR IS NULL OR (SELECT DATEDIFF(DAY, GETDATE() , @pFechaR)) < 0) 
+			BEGIN
+				SET @msgError = 'La fecha de reserva es inválida';
+				SELECT @msgError;
+			END
+
+			IF (@pHInicio IS NULL OR DATEPART(HH,@pHInicio) < 7 OR DATEPART(HH,@pHInicio) > 20) 
+			BEGIN
+				SET @msgError = 'La hora de inicio es inválida';
+				SELECT @msgError;
+			END
+
+			IF (@pHFinal IS NULL OR DATEPART(HH,@pHFinal) < 7 OR DATEPART(HH,@pHFinal) > 20) 
+			BEGIN
+				SET @msgError = 'La hora de inicio es inválida';
+				SELECT @msgError;
+			END
+
+			IF (DATEDIFF(HH, @pHInicio, @pHFinal)<=0)
+			BEGIN
+				SET @msgError = 'La hora de finalizacion debe ser mayor que la de inicio';
+				SELECT @msgError;
+			END
+
+			INSERT INTO Reservaciones(numCubiculo, numCarnet, fechaReserv, horaInicio, horaFinal)
+			VALUES (@pNumCubi, @pNumCarnet, @pFechaR, @pHInicio, @pHFinal);
+		
+		END
+
+
+
+		IF (@pOperacion = 'READ')
+		BEGIN
+
+			IF ((SELECT COUNT(*) FROM Reservaciones WHERE idReserva = @pIdReserva) = 0)
+			BEGIN
+				SET @msgError = 'La reserva no existe, no se puede realizar la busqueda';
+				SELECT @msgError;
+			END
+
+			SELECT * FROM Reservaciones WHERE idReserva = @pIdReserva;
+
+		END
+
+
+
+		IF (@pOperacion = 'UPDATE') 
+		BEGIN
+
+			IF ((SELECT COUNT(*) FROM Reservaciones WHERE idReserva = @pIdReserva) = 0)
+			BEGIN
+				SET @msgError = 'La reserva no existe, no se puede modificar';
+				SELECT @msgError;
+			END
+
+			IF (@pNumCubi IS NOT NULL AND (SELECT COUNT(*) FROM Cubiculos WHERE numCubiculo = @pNumCubi) = 0)
+			BEGIN
+				SET @msgError = 'No existe el cubiculo ingresado';
+				SELECT @msgError;
+			END
+
+			IF (@pNumCarnet IS NOT NULL AND (SELECT COUNT(*) FROM Estudiantes WHERE numCarnet = @pNumCarnet) = 0)
+			BEGIN
+				SET @msgError = 'No existe el estdiante ingresado';
+				SELECT @msgError;
+			END
+
+			IF (@pFechaR IS NOT NULL AND (SELECT DATEDIFF(DAY, GETDATE() , @pFechaR)) < 0) 
+			BEGIN
+				SET @msgError = 'La fecha de reserva es inválida';
+				SELECT @msgError;
+			END
+
+			IF (@pHInicio IS NOT NULL AND (DATEPART(HH,@pHInicio) < 7 OR DATEPART(HH,@pHInicio) > 20)) 
+			BEGIN
+				SET @msgError = 'La hora de inicio es inválida';
+				SELECT @msgError;
+			END
+
+			IF (@pHFinal IS NOT NULL AND (DATEPART(HH,@pHFinal) < 7 OR DATEPART(HH,@pHFinal) > 20))
+			BEGIN
+				SET @msgError = 'La hora de inicio es inválida';
+				SELECT @msgError;
+			END
+
+			IF (@pHInicio IS NOT NULL AND @pHFinal IS NOT NULL AND DATEDIFF(HH, @pHInicio, @pHFinal)<=0)
+			BEGIN
+				SET @msgError = 'La hora de finalizacion debe ser mayor que la de inicio';
+				SELECT @msgError;
+			END
+
+			UPDATE Reservaciones
+			SET numCubiculo = ISNULL(@pNumCubi, numCubiculo), numCarnet = ISNULL(@pNumCarnet, numCarnet), fechaReserv = ISNULL(@pFechaR, fechaReserv), horaInicio = ISNULL(@pHInicio, horaInicio), horaFinal = ISNULL(@pHFinal, horaFinal)
+			WHERE idReserva = @pIdReserva;
+
+		END
+        
+
+
+		IF (@pOperacion = 'DELETE') 
+		BEGIN
+
+			IF ((SELECT COUNT(*) FROM Reservaciones WHERE idReserva = @pIdReserva) = 0)
+			BEGIN
+				SET @msgError = 'La reserva no existe, no se puede eliminar';
+				SELECT @msgError;
+			END
+
+			IF ((SELECT COUNT(*) FROM Confirmaciones WHERE idReserva = @pIdReserva) = 0)
+			BEGIN
+				SET @msgError = 'No se puede eliminar, reservacion asociada a confirmacion';
+				SELECT @msgError;
+			END
+
+			IF ((SELECT COUNT(*) FROM Cancelaciones WHERE idReserva = @pIdReserva) = 0)
+			BEGIN
+				SET @msgError = 'No se puede eliminar, reservacion asociada a cancelacion ';
+				SELECT @msgError;
+			END
+
+			DELETE FROM Reservaciones 
+			WHERE idReserva = @pIdReserva;
+			
+		END
+
+
+        
+	ELSE
+		SET @msgError = 'El id de reservación está vacío';
+        SELECT @msgError;
+	END
+
+END
+GO
+//
+
+
+
+-----------------------------------------------------------------CANCELACIONES--------------------------------------------
+
+
+
+DELIMITER //
+CREATE PROCEDURE CRUD_Cancelaciones
+	@pIdCanc INT,
+	@pIdReserva INT, 
+	@pMotivo VARCHAR(100), 
+	@pMomentoC DATETIME,
+	@pOperacion VARCHAR(10)
+AS
+BEGIN
+
+DECLARE @msgError VARCHAR(70);
+SET @msgError = '';
+
+	IF (@pIdCanc IS NOT NULL)
+	BEGIN
+
+		IF (@pOperacion = 'CREATE')
+		BEGIN
+
+			IF ((SELECT COUNT(*) FROM Reservaciones WHERE idReserva = @pIdReserva) = 0)
+			BEGIN
+				SET @msgError = 'No existe reservacion con ese id';
+				SELECT @msgError;
+			END
+
+			IF (@pMotivo = '' OR @pMotivo IS NULL) 
+			BEGIN
+				SET @msgError = 'El motivo es inválido';
+				SELECT @msgError;
+			END
+
+			IF (@pMomentoC IS NULL OR (SELECT DATEDIFF(DD, @pMomentoC, GETDATE())) < 0)
+			BEGIN
+				SET @msgError = 'El día y hora son inválidos';
+				SELECT @msgError;
+			END
+
+			INSERT INTO Cancelaciones(idReserva, motivo, momentoCan)
+			VALUES (@pIdReserva, @pMotivo, @pMomentoC);
+		
+		END
+
+
+
+		IF (@pOperacion = 'READ')
+		BEGIN
+
+			IF ((SELECT COUNT(*) FROM Cancelaciones WHERE idCancelacion = @pIdCanc) = 0)
+			BEGIN
+				SET @msgError = 'La cancelacion no existe, no se puede realizar la busqueda';
+				SELECT @msgError;
+			END
+
+			SELECT * FROM Cancelaciones WHERE idCancelacion = @pIdCanc;
+
+		END
+
+
+
+		IF (@pOperacion = 'UPDATE') 
+		BEGIN
+
+			IF ((SELECT COUNT(*) FROM Cancelaciones WHERE idCancelacion = @pIdCanc) = 0)
+			BEGIN
+				SET @msgError = 'La cancelacion no existe, no se puede modificar';
+				SELECT @msgError;
+			END
+
+			IF (@pIdReserva IS NOT NULL AND (SELECT COUNT(*) FROM Reservaciones WHERE idReserva = @pIdReserva) = 0)
+			BEGIN
+				SET @msgError = 'No existe reservacion con ese id';
+				SELECT @msgError;
+			END
+
+			IF (@pMotivo = '') 
+			BEGIN
+				SET @msgError = 'El correo es inválido';
+				SELECT @msgError;
+			END
+
+			UPDATE Cancelaciones
+			SET idReserva = ISNULL(@pIdReserva, idReserva), motivo = ISNULL(@pMotivo, motivo), momentoCan = ISNULL(@pMomentoC, momentoCan)
+			WHERE idCancelacion = @pIdCanc;
+
+		END
+        
+
+
+		IF (@pOperacion = 'DELETE') 
+		BEGIN
+
+			IF ((SELECT COUNT(*) FROM Cancelaciones WHERE idCancelacion = @pIdCanc) = 0)
+			BEGIN
+				SET @msgError = 'La cancelacion no existe, no se puede eliminar';
+				SELECT @msgError;
+			END
+
+			DELETE FROM Cancelaciones
+			WHERE idCancelacion = @pIdCanc;
+			
+		END
+
+
+        
+	ELSE
+		SET @msgError = 'El id de cancelacion está vacío';
+        SELECT @msgError;
+	END
+
+END
+GO
+//
+
+
+
+-----------------------------------------------------------------CONFIRMACIONES--------------------------------------------
+
+
+
+DELIMITER //
+CREATE PROCEDURE CRUD_Confirmaciones
+	@pIdConf INT,
+	@pIdReserva INT,
+	@pMomentoC DATETIME,
+	@pOperacion VARCHAR(10)
+AS
+BEGIN
+
+DECLARE @msgError VARCHAR(70);
+SET @msgError = '';
+
+	IF (@pIdConf IS NOT NULL)
+	BEGIN
+
+		IF (@pOperacion = 'CREATE')
+		BEGIN
+
+			IF ((SELECT COUNT(*) FROM Reservaciones WHERE idReserva = @pIdReserva) = 0)
+			BEGIN
+				SET @msgError = 'No existe reservacion con ese id';
+				SELECT @msgError;
+			END
+
+			IF (@pMomentoC IS NULL OR (SELECT DATEDIFF(DD, @pMomentoC, GETDATE())) < 0)
+			BEGIN
+				SET @msgError = 'El día y hora son inválidos';
+				SELECT @msgError;
+			END
+
+			INSERT INTO Confirmaciones(idReserva, momentoCon)
+			VALUES (@pIdReserva, @pMomentoC);
+		
+		END
+
+
+
+		IF (@pOperacion = 'READ')
+		BEGIN
+
+			IF ((SELECT COUNT(*) FROM Confirmaciones WHERE idConfirma = @pIdConf) = 0)
+			BEGIN
+				SET @msgError = 'La confirmacion de reserva no existe, no se puede realizar la busqueda';
+				SELECT @msgError;
+			END
+
+			SELECT * FROM Confirmaciones WHERE idConfirma = @pIdConf;
+
+		END
+
+
+
+		IF (@pOperacion = 'UPDATE') 
+		BEGIN
+
+			IF ((SELECT COUNT(*) FROM Confirmaciones WHERE idConfirma = @pIdConf) = 0)
+			BEGIN
+				SET @msgError = 'La confirmacion de reserva no existe, no se puede modificar';
+				SELECT @msgError;
+			END
+
+			IF (@pIdReserva IS NOT NULL AND (SELECT COUNT(*) FROM Reservaciones WHERE idReserva = @pIdReserva) = 0)
+			BEGIN
+				SET @msgError = 'No existe reservacion con ese id';
+				SELECT @msgError;
+			END
+
+			UPDATE Confirmaciones
+			SET idReserva = ISNULL(@pIdReserva, idReserva), momentoCon = ISNULL(@pMomentoC, momentoCon)
+			WHERE idConfirma = @pIdConf;
+
+		END
+        
+
+
+		IF (@pOperacion = 'DELETE') 
+		BEGIN
+
+			IF ((SELECT COUNT(*) FROM Confirmaciones WHERE idConfirma = @pIdConf) = 0)
+			BEGIN
+				SET @msgError = 'La confirmacion de reserva no existe, no se puede eliminar';
+				SELECT @msgError;
+			END
+
+			DELETE FROM Confirmaciones
+			WHERE idConfirma = @pIdConf;
+			
+		END
+
+
+        
+	ELSE
+		SET @msgError = 'El id de confirmacion está vacío';
         SELECT @msgError;
 	END
 
