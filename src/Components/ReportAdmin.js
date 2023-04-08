@@ -7,8 +7,9 @@ const ReportAdmin = () => {
 	const navigate = useNavigate();
 	return (
 		<>
+			<h1 className="page-title">Informe de uso del cubiculo</h1>
 			<div id="menu-btns">
-				<h1 className="page-title">Informe de uso del cubiculo</h1>
+
 				{/*<div id="report-content">
 					{/* Agrega aquí el contenido del informe 
 				</div>*/}
