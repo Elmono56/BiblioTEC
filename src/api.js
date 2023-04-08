@@ -10,7 +10,7 @@ const dbConfig = {
   user: "biblioTEC",
   password: "1234",
   server: "localhost",
-  database: "biblioTEC",
+  database: "BiblioTEC",
   options: {
     enableArithAbort: true,
     trustServerCertificate: true,
@@ -22,23 +22,60 @@ sql
   .then((pool) => {
     console.log("Connected to SQL Server");
 
-    app.get("/api/login/:codAdmin/:idenPers", async (req, res) => {
-      const { codAdmin, idenPers } = req.params;
+    app.get("/api/login/:carnet/:contrasena", async (req, res) => {
+      const { carnet, contrasena } = req.params;
       try {
         const result = await pool
           .request()
-          .input("codAdmin", sql.VarChar, codAdmin) // pass values as strings
-          .input("idenPers", sql.VarChar, idenPers) // pass values as strings
-          .output("existe", sql.Bit)
-          .execute("ValidarAdministrador");
+          .input("carnet", sql.VarChar(128), carnet)
+          .input("contrasena", sql.VarChar(128), contrasena)
+          .output("resultado", sql.Int)
+          .execute("sp_ValidarUsuario");
 
-        const outputValue = result.output.existe;
+        const outputValue = result.output.resultado;
+        console.log("Output value:", outputValue);
         res.json({ success: true, result: outputValue });
       } catch (error) {
         console.error("Error executing stored procedure:", error);
         res
           .status(500)
           .send("Error executing stored procedure: " + error.message);
+      }
+    });
+
+    app.get("/api/reservacion/:numReserva", async (req, res) => {
+      const { numReserva } = req.params;
+      try {
+        const result = await pool
+          .request()
+          .input("numReserva", sql.Int, numReserva)
+          .output("resultado", sql.Int)
+          .execute("sp_EliminarReservacion");
+    
+        const outputValue = result.output.resultado;
+        console.log("Output value:", outputValue);
+        res.json({ success: true, result: outputValue });
+      } catch (error) {
+        console.error("Error executing stored procedure:", error);
+        res.status(500).send("Error executing stored procedure: " + error.message);
+      }
+    });
+
+    app.get("/api/disponibilidad/:numCubiculo", async (req, res) => {
+      const { numCubiculo } = req.params;
+      try {
+        const result = await pool
+          .request()
+          .input("numCubiculo", sql.Int, numCubiculo)
+          .output("resultado", sql.Int)
+          .execute("sp_VerificarEstadoCubiculo");
+    
+        const outputValue = result.output.resultado;
+        console.log("Output value:", outputValue);
+        res.json({ success: true, result: outputValue });
+      } catch (error) {
+        console.error("Error executing stored procedure:", error);
+        res.status(500).send("Error executing stored procedure: " + error.message);
       }
     });
 
