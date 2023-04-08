@@ -17,6 +17,7 @@ const ModifyStudent = () => {
                         <input type="number" name="name"/><br></br><br></br>
                     </label>
                 </form>
+                {/*Se tiene que hacer otra ventana donde se muestre la informacion del estudiante si existe y se pueda modificar*/}
                 <button onClick={() => navigateInfo('')} className='est-chooseOption'>
                     Consultar
                 </button>
