@@ -4,8 +4,10 @@ body{
   }
 #menu-btns{
     position: relative;
-    margin-top: 20%; 
-
+    margin-top: -2%; 
+}
+#menu-btns h1{
+  margin-left: 35%;
 }
 .est-chooseOption{
     background-color: #0e0637;
