@@ -13,7 +13,7 @@ const ModifyStudent = () => {
                 <h1 className="page-title">Modificar estudiante</h1>
                 <form id="mod-estudiante">
                     <label>
-                        Número de carnet:
+                        Número de carnet:<br></br><br></br>
                         <input type="number" name="name"/><br></br><br></br>
                     </label>
                 </form>

@@ -16,13 +16,13 @@ const DeleteStudent = () => {
             <TopBar />
             <div id="menu-btns">
                 <h1 className="page-title">Eliminar Estudiante</h1>
-                <form className="form-reservar">
+                <form id="del-estudiante">
                     <label>
-                        Numero de carnet:
+                        Numero de carnet:<br></br><br></br>
                         <input type="text" name="name"/><br></br><br></br>
                     </label>
                     <label>
-                        Motivo de eliminacion:
+                        Motivo de eliminación:<br></br><br></br>
                         <input type="text" name="name" /><br></br><br></br>
                     </label>
                 </form>
