@@ -18,7 +18,7 @@ body{
     margin-right: 10px;
     transition: transform 0.3s ease-in-out;
     font-family: "Roboto", sans-serif;
-    margin-left: 45.5%;
+    margin-left: 46.5%;
 
 }
 .est-chooseOption:hover {
@@ -32,7 +32,7 @@ body{
   font-family: "Roboto", sans-serif;
   font-size: 45px;
   color: #0e0637;
-  margin-left: 33%;
+  margin-left: 38%;
   margin-top: 15%;
 }
 .form-reservar{

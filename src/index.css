@@ -26,8 +26,9 @@ body{
 }
 #logoTEC{
   /*Resize the image*/
-  width: 240px;
-  height: 60px;
+  position: relative;
+  width: 300px;
+  height: 80px;
   /*Put the image down*/
   margin-top: 5.5%;
   margin-left: 50px;
@@ -45,14 +46,14 @@ body{
   margin-bottom: 3%;
   font-size: 40px;
   position: relative;
-  top: -70px;
+  top: -100px;
   color: #f1f1f1;
 }
 #appDescription{
   margin-left: 70%;
   font-size: 15px;
   position: relative;
-  margin-top: -8%;
+  margin-top: -10%;
   color: white;
   left: 2px;
 }
@@ -60,9 +61,9 @@ body{
   width: 300px;
   height: 200px;
   border: 0;
-  margin-top: 100px;
+  margin-top: 130px;
   margin-right: 300px;
-  margin-left: 55%;
+  margin-left: 56%;
 }
 #login-btn{
   background-color: #0e0637;
