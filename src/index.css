@@ -42,7 +42,8 @@ body{
 } 
 #appTitle{
   margin-left: 70%;
-  font-size: 45px;
+  margin-bottom: 3%;
+  font-size: 40px;
   position: relative;
   top: -95px;
   color: #f1f1f1;
@@ -51,11 +52,9 @@ body{
   margin-left: 70%;
   font-size: 15px;
   position: relative;
-  top: -95px;
-  color: black;
+  margin-top: -11%;
+  color: white;
   left: 2px;
-
-
 }
 #map{
   width: 300px;

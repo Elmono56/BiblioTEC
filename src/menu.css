@@ -35,12 +35,13 @@ body{
   margin-left: 33%;
   margin-top: 15%;
 }
-#form-reservar{
+.form-reservar{
   font-family: "Roboto", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 20px;
+  font-size: 16px;
 }
 .UIReservar{
   font-size: 16px;
