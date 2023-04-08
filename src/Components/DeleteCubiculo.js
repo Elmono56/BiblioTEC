@@ -9,14 +9,14 @@ const DeleteCubiculo = () => {
         <>
             <TopBar />
             <div id="menu-btns">
-                <h1 className="page-title">Eliminar Cubiculo</h1>
-                <form className="form-reservar">
+                <h1 className="page-title">Eliminar Cubículo</h1>
+                <form id="form-eliminar">
                     <label>
-                        Numero de cubiculo:
+                        Número de cubículo:<br></br>
                         <input type="number" name="name" min="1" max="39" required/><br></br><br></br>
                     </label>
                     <label>
-                        Motivo de eliminacion:
+                        Motivo de eliminación:<br></br>
                         <input type="text" name="name" /><br></br><br></br>
                     </label>
                 </form>

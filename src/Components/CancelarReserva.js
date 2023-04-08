@@ -11,9 +11,9 @@ const CancelarReserva = () => {
             <TopBar />
             <div id="menu-btns">
                 <h1 className="page-title">Cancelar Reserva</h1>
-                <form className="form-reservar">
+                <form id="form-cancelar">
                     <label>
-                        Número de reserva:
+                        Número de reserva: <br></br>
                         <input type="number" name="name"/><br></br><br></br>
                     </label>
                 </form>
