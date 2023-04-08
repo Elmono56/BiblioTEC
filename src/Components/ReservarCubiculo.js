@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 import TopBar from "./TopBar";
 import '../menu.css';
 const ReservarCubiculo = () => {
+    const navigate = useNavigate();
     return(
         <>
             <TopBar/>
@@ -18,7 +20,7 @@ const ReservarCubiculo = () => {
                 </form>
 
                 <button className="est-chooseOption">Reservar</button>
-
+                <button onClick={() => navigate('/menu')} className="est-chooseOption">Regresar</button>
             </section>
         </>
 

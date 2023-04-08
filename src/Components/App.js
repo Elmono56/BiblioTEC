@@ -11,6 +11,7 @@ import DeleteCubiculo from "./DeleteCubiculo";
 import ModifyStudent from "./ModifyStudent";
 import CancelarReserva from "./CancelarReserva";
 import Disponibilidad from "./Disponibilidad";
+import HistorialReserva from "./HistorialReserva";
 
 const App = () => {
 	return (
@@ -21,6 +22,7 @@ const App = () => {
 				<Route path="/menu/reservarCubiculo" element={<ReservarCubiculo/>} />
 				<Route path="/menu/cancelarReserva" element={<CancelarReserva/>} />
 				<Route path="/menu/verCubiculos" element={<Disponibilidad/>} />
+				<Route path="/menu/verHistorial" element={<HistorialReserva/>} />
 				<Route path="/menuAdmin" element={<MenuAdmin />} />
 				<Route path="/menuAdmin/reportAdmin" element={<ReportAdmin />} />
 				<Route path="/menuAdmin/agregarCubiculo" element={<AddCubiculo/>} />

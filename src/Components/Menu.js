@@ -16,7 +16,7 @@ const Menu = () => {
 				<button onClick={() => navigateReservar('/menu/reservarCubiculo')} className='est-chooseOption'>Reservar cubiculo</button><br></br>
 				<button onClick={() => navigateCancelar('/menu/cancelarReserva')} className='est-chooseOption'>Cancelar reserva de cubiculo</button><br></br>
 				<button onClick={() => navigateVerCubiculos('/menu/verCubiculos')} className='est-chooseOption'>Ver cubiculos disponibles</button><br></br>
-				<button onClick={() => navigateVerHistorial('')} className='est-chooseOption'>Ver historial de reservas</button><br></br><br></br>
+				<button onClick={() => navigateVerHistorial('/menu/verHistorial')} className='est-chooseOption'>Ver historial de reservas</button><br></br><br></br>
 				<button onClick={() => navigate('../')} className='est-chooseOption'>Salir</button><br></br>
 			</div>
 			<TopBar />
