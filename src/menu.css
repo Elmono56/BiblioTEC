@@ -126,6 +126,9 @@ width: 125px;
 }
 #form-eliminar input[type="text"]{
   height: 40px;
-
- 
+}
+#disp-cubiculo{
+  text-align: center;
+  margin: 1%;
+  font-family: "Roboto", sans-serif;
 }
