@@ -1,22 +1,206 @@
-#menu-btns{
-    position: absolute;
-    margin-top: 20%;
-    /*This is a group of buttons just. Make his distribution and colors prettier*/
 
+body{
+    overflow: auto;
+  }
+#menu-btns{
+    position: relative;
+    margin-top: -2%; 
+}
+#menu-btns h1{
+  margin-left: 35%;
 }
 .est-chooseOption{
     background-color: #0e0637;
     color: white;
     border: none;
+    width: 10%;
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 5px;
     margin-bottom: 1%;
     transition: transform 0.3s ease-in-out;
-
+    font-family: "Roboto", sans-serif;
+    margin-left: 45%;
 }
 .est-chooseOption:hover {
     background-color: #6a5acd;
     cursor: pointer;
     transform: scale(1.1);
   }
+
+.page-title{
+  position: relative;
+  font-family: "Roboto", sans-serif;
+  font-size: 45px;
+  color: #0e0637;
+  margin-left: 38%;
+  margin-top: 15%;
+
+}
+#form-reservar{
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  font-size: 16px;
+  position: relative;
+}
+#form-reservar input[type="number"], #form-reservar input[type="date"], #form-reservar input[type="time"]{
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  outline: none;
+
+}
+#form-agregar{
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  font-size: 16px;
+  position: relative;
+  margin-top: 0%;
+}
+#form-agregar input[type="number"]  {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.UIReservar, #form-reservar input[type="checkbox"]:hover, #form-agregar input[type="number"]:hover,
+#form-agregar input[type="checkbox"]:hover{
+  border: 1px solid #0e0637;
+  box-shadow: 0px 0px 5px #0e0637;
+  cursor: pointer;
+}
+.UIReservar:hover, #form-reservar input[type="number"]:hover, #form-reservar input[type="date"]:hover, #form-reservar input[type="time"]:hover{
+  border: 1px solid #0e0637;
+  box-shadow: 0px 0px 5px #0e0637;
+  cursor: pointer;
+}
+.UIReservar[type="time"]{
+width: 125px;
+}
+.UIReservar[type="number"]{
+  width: 125px;
+}
+#form-cancelar{
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  
+}
+#form-cancelar input[type="number"]{
+  margin-top: 1%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+#form-cancelar input[type="number"]:hover{
+  border: 1px solid #0e0637;
+  box-shadow: 0px 0px 5px #0e0637;
+  cursor: pointer;
+}
+#form-eliminar{
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+}
+#form-eliminar input[type="number"], #form-eliminar input[type="text"]{
+  margin-top: 1%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+#form-eliminar input[type="text"]{
+  height: 40px;
+}
+#disp-cubiculo{
+  text-align: center;
+  margin: 1%;
+  font-family: "Roboto", sans-serif;
+}
+#disp-cubiculo select[name="cubiculo"]{
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease-in-out;
+}
+#disp-cubiculo select[name="cubiculo"]:hover{
+  border: 1px solid #0e0637;
+  box-shadow: 0px 0px 5px #0e0637;
+  cursor: pointer;
+}
+#mod-estudiante{
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+}
+#mod-estudiante input[type="number"]{
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease-in-out;
+}
+#mod-estudiante input[type="number"]:hover{
+  border: 1px solid #0e0637;
+  box-shadow: 0px 0px 5px #0e0637;
+  cursor: pointer;
+}
+#del-estudiante{
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+}
+#del-estudiante input[type="text"]{
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease-in-out;
+}
+#del-estudiante input[type="text"]:hover{
+  border: 1px solid #0e0637;
+  box-shadow: 0px 0px 5px #0e0637;
+  cursor: pointer;
+}
+
+#table {
+  border-collapse: collapse;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  width: 100%;
+}
+
+#table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  background-color: #f2f2f2;
+}
+
+#table td {
+  border: 1px solid #ddd;
+  text-align: center;
+  padding: 8px;
+}
+
+#table tbody td {
+  font-weight: normal;
+}
+
+#table thead th {
+  font-weight: 700;
+}
