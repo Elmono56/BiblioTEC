@@ -20,7 +20,7 @@ const HistorialReserva = () => {
             {reservations.length === 0 ? (
                 <p>No hay reservas que mostrar</p>
             ) : (
-                <table id="form-reservar">
+                <table id="table">
                     <thead>
                         <tr>
                             <th>Fecha</th>
@@ -38,7 +38,7 @@ const HistorialReserva = () => {
                         ))}
                     </tbody>
                 </table>
-            )}
+            )}<br></br><br></br>
             <button onClick={() => navigate('/menu')} className="est-chooseOption">Regresar</button>
         </div>
         </>
