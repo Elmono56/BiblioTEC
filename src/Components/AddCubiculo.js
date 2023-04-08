@@ -13,7 +13,7 @@ const AddCubiculo = () => {
                 <form className="form-reservar">
                     <label>
                         Numero de cubiculo:
-                        <input type="number" name="name" min="39" required/><br></br><br></br>
+                        <input type="number" name="name" min="1" max="39" required/><br></br><br></br>
                     </label>
                     <label>
                         Capacidad de personas:
