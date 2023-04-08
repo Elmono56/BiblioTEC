@@ -18,7 +18,7 @@ const CancelarReserva = () => {
                     </label>
                 </form>
                 <button onClick={() => navigateInfo('/menu')} className='est-chooseOption'>
-                    Consultar
+                    Aceptar
                 </button>
                 <button onClick={() => navigate('/menu')} className='est-chooseOption'>
                     Regresar
