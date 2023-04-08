@@ -11,9 +11,9 @@ const ModifyStudent = () => {
             <TopBar />
             <div id="menu-btns">
                 <h1 className="page-title">Modificar estudiante</h1>
-                <form className="form-reservar">
+                <form id="mod-estudiante">
                     <label>
-                        Número de carnet:
+                        Número de carnet:<br></br><br></br>
                         <input type="number" name="name"/><br></br><br></br>
                     </label>
                 </form>

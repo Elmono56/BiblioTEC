@@ -10,10 +10,11 @@ const Disponibilidad = () => {
         <>
             <TopBar />
             <div id="menu-btns">
-                <h1 className="page-title">Disponibilidad de cubiculos</h1>
-                <form className="form-reservar">
+                <h1 className="page-title">Disponibilidad de cubículos</h1>
+                <form id="disp-cubiculo">
                     <label>
-                        Cubiculo:
+                        Cubículo:
+                        <br></br><br></br>
                         <select name="cubiculo">
                             <option value="">Selecciona un cubículo</option>
                             <optgroup label="Piso 1">
