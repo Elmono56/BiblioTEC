@@ -35,23 +35,54 @@ body{
   margin-left: 38%;
   margin-top: 15%;
 }
-.form-reservar{
+#form-reservar{
   font-family: "Roboto", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px;
+  margin: 10px;
   font-size: 16px;
+  position: relative;
 }
-.UIReservar{
+#form-reservar input[type="number"], #form-reservar input[type="date"], #form-reservar input[type="time"]{
+  font-family: "Roboto", sans-serif;
   font-size: 16px;
   border-radius: 5px;
   border: 1px solid #ccc;
   padding: 10px;
   margin-bottom: 10px;
   transition: all 0.3s ease-in-out;
+  outline: none;
+
 }
-.UIReservar:hover{
+#form-agregar{
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  font-size: 16px;
+  position: relative;
+  margin-top: -15%;
+}
+#form-agregar input[type="number"]  {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease-in-out;
+
+}
+
+.UIReservar, #form-reservar input[type="checkbox"]:hover, #form-agregar input[type="number"]:hover,
+#form-agregar input[type="checkbox"]:hover{
+  border: 1px solid #0e0637;
+  box-shadow: 0px 0px 5px #0e0637;
+  cursor: pointer;
+}
+.UIReservar:hover, #form-reservar input[type="number"]:hover, #form-reservar input[type="checkbox"]:hover{
   border: 1px solid #0e0637;
   box-shadow: 0px 0px 5px #0e0637;
   cursor: pointer;

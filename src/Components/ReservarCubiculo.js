@@ -8,7 +8,7 @@ const ReservarCubiculo = () => {
             <section id="rsv-cub">
                 <h1 className="page-title">Reservar cubículo</h1>
                 {/*Formulario que pida el número de personas que van a usar el cubículo, un input tipo date y la hora*/}
-                <form className="form-reservar">
+                <form id="form-reservar">
                     <label htmlFor="numPersonas">Número de personas</label><br></br>
                     <input type="number" id="numPersonas" name="numPersonas" min="3" max="8" required className="UIReservar"/>
                     <label htmlFor="fecha">Fecha</label><br></br>
