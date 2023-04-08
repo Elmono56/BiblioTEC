@@ -1,40 +1,33 @@
-import React from 'react';
+import React from "react";
 import { useNavigate } from 'react-router-dom';
-import TopBar from './TopBar';
+import TopBar from "./TopBar";
 import '../menu.css';
 
-const DeleteStudent = () => {
+const DeleteCubiculo = () => {
     const navigate = useNavigate();
-
-    const handleDelete = (event) => {
-        event.preventDefault();
-        console.log('Eliminar estudiante!');
-    };
-
     return (
         <>
             <TopBar />
             <div id="menu-btns">
-                <h1 className="page-title">Eliminar Estudiante</h1>
+                <h1 className="page-title">Eliminar Cubiculo</h1>
                 <form className="form-reservar">
                     <label>
-                        Numero de carnet:
-                        <input type="text" name="name"/><br></br><br></br>
+                        Numero de cubiculo:
+                        <input type="number" name="name" min="1" max="39" required/><br></br><br></br>
                     </label>
                     <label>
                         Motivo de eliminacion:
                         <input type="text" name="name" /><br></br><br></br>
                     </label>
                 </form>
-                <button className='est-chooseOption' onClick={handleDelete}>
+                <button className='est-chooseOption'>
                     Eliminar
                 </button>
-                <button className='est-chooseOption' onClick={() => navigate('/menuAdmin')}>
+                <button onClick={() => navigate('/menuAdmin')} className='est-chooseOption'>
                     Regresar
                 </button>
             </div>
         </>
-    );
-};
-
-export default DeleteStudent;
+    )
+}
+export default DeleteCubiculo;

@@ -1,7 +1,33 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TopBar from './TopBar';
+import axios from 'axios';
+
 const LogIn = () => {
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
+	const [error, setError] = useState("");
+
+	// Función que se ejecuta cuando el usuario hace clic en el botón de inicio de sesión
+	// Javier, revisar el LogIn.js de la carpeta Download
+	const handleClick = async () => {
+		try {
+			const response = await axios.get(
+				`http://localhost:3001/api/login/${username}/${password}`
+			);
+			const isValid = response.data.result;
+			if (isValid) {
+				console.log("Usuario autenticado");
+
+				// Si el usuario está autenticado, puede realizar las acciones necesarias, como cambiar el estado de su aplicación
+				// Por ejemplo, puede cambiar el estado de autenticación o redirigir al usuario a una nueva página
+			} else {
+				setError("Credenciales inválidas");
+			}
+		} catch (error) {
+			console.error("Error al enviar la solicitud:", error);
+		}
+	};
 	const [loggedIn, setLoggedIn] = useState(false);
 	const navigate = useNavigate();
 	const map = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2364.7071527850835!2d-83.91204070884748!3d9.854381380374436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0dff31bc32303%3A0x6fa2b81321df9631!2sBiblioteca%20Jos%C3%A9%20Figueres%20Ferrer!5e1!3m2!1ses-419!2scr!4v1680422537643!5m2!1ses-419!2scr";
@@ -23,7 +49,7 @@ const LogIn = () => {
 					<br></br>
 					<label htmlFor="password">Contraseña </label>
 					<br></br>
-					<input type="password" id="password" name="password" className='loginBoxes'/>
+					<input type="password" id="password" name="password" className='loginBoxes' />
 					<br></br>
 					<input type="submit" value="Iniciar sesión" id={"login-btn"} />
 				</form>
