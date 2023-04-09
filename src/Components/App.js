@@ -12,7 +12,7 @@ import ModifyStudent from "./ModifyStudent";
 import CancelarReserva from "./CancelarReserva";
 import Disponibilidad from "./Disponibilidad";
 import HistorialReserva from "./HistorialReserva";
-import infoStudent from "./infoStudent";
+import InfoStudent from "./InfoStudent";
 
 const App = () => {
   return (
@@ -40,8 +40,8 @@ const App = () => {
           element={<ModifyStudent />}
         />
         <Route
-          path="/menuAdmin/modificarEstudiante/infoStudent"
-          element={<infoStudent/>}
+          path="/menuAdmin/modificarEstudiante/informacionEstudiante"
+          element={<InfoStudent />}
         />
       </Routes>
     </BrowserRouter>
