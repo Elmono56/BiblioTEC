@@ -12,6 +12,7 @@ import ModifyStudent from "./ModifyStudent";
 import CancelarReserva from "./CancelarReserva";
 import Disponibilidad from "./Disponibilidad";
 import HistorialReserva from "./HistorialReserva";
+import infoStudent from "./infoStudent";
 
 const App = () => {
   return (
@@ -37,6 +38,10 @@ const App = () => {
         <Route
           path="/menuAdmin/modificarEstudiante"
           element={<ModifyStudent />}
+        />
+        <Route
+          path="/menuAdmin/modificarEstudiante/infoStudent"
+          element={<infoStudent/>}
         />
       </Routes>
     </BrowserRouter>

@@ -18,7 +18,7 @@ const ModifyStudent = () => {
                     </label>
                 </form>
                 {/*Se tiene que hacer otra ventana donde se muestre la informacion del estudiante si existe y se pueda modificar*/}
-                <button onClick={() => navigateInfo('')} className='est-chooseOption'>
+                <button onClick={() => navigateInfo('/menuAdmin/modificarEstudiante/infoStudent')} className='est-chooseOption'>
                     Aceptar
                 </button>
                 <button onClick={() => navigate('/menuAdmin')} className='est-chooseOption'>

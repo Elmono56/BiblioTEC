@@ -12,7 +12,7 @@ const infoStudent = () => {
             <TopBar />
             <div id="menu-btns">
                 <h1 className="page-title">Información del estudiante</h1>
-                <form id="form-info">
+                <form id="form-agregar">
                     <label>
                         Nombre: <br></br>
                         <input type="text" name="name"/><br></br><br></br>
