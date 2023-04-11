@@ -98,9 +98,18 @@ body{
   box-sizing: border-box;
   font-size: 16px;
   width: 100%;
+  border: none;
 }
 .loginBoxes:focus{
   outline: none;
   box-shadow: 0px 0px 5px #0e0637;
+
 }
+.loginBoxes input[type="checkbox"]:hover{
+  border: none;
+}
+.form-group input[type="checkbox"]{
+  outline: none;
+  margin-left: 50%;
+} 
 

@@ -36,8 +36,8 @@ const RegisterStudent = () => {
                         onChange={(e) => setContrasena(e.target.value)}/>
                     </div>
                     <div className="form-group">
-                        <label for="servicio">Servicio especial</label>
-                        <input type="checkbox" className="loginBoxes" id="servicio" 
+                        <label for="servicio">Servicio especial</label> <br></br>
+                        <input type="checkbox" 
                         value={servicio}
                         onChange={(e) => setServicio(e.target.value)}/>
                     </div>
