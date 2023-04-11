@@ -30,6 +30,7 @@ const LogIn = () => {
     event.preventDefault();
     const isValid = await handleClick();
     if (isValid === 1) {
+      localStorage.setItem('carnet', username);
       navigate("/Menu");
     } else if (isValid === 2) {
       navigate("/MenuAdmin");

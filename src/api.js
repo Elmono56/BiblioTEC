@@ -79,6 +79,37 @@ sql
       }
     });
 
+    app.get("/api/reporte", async (req, res) => {
+      try {
+        const result = await pool
+          .request()
+          .query("SELECT TOP (1000) [numCubiculo],[numCarnet],[fechaReserv],[horaInicio],[horaFinal],[numReserva] FROM [BiblioTEC].[dbo].[Reservaciones]");
+    
+        res.json(result.recordset);
+      } catch (error) {
+        console.error("Error executing SQL command:", error);
+        res.status(500).send("Error executing SQL command: " + error.message);
+      }
+    });
+
+
+    app.get("/api/historial/:carnet", async (req, res) => {
+      try {
+        const carnet = req.params.carnet;
+        const result = await pool
+          .request()
+          .input('carnet', sql.BigInt, carnet)
+          .execute('sp_HistorialReservas');
+        
+        res.json(result.recordset);
+      } catch (error) {
+        console.error("Error executing SQL command:", error);
+        res.status(500).send("Error executing SQL command: " + error.message);
+      }
+    });
+    
+    
+
     const port = process.env.PORT || 3001;
     app.listen(port, () => {
       console.log(`Server is running on port ${port}`);
