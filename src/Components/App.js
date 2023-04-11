@@ -12,7 +12,7 @@ import ModifyStudent from "./ModifyStudent";
 import CancelarReserva from "./CancelarReserva";
 import Disponibilidad from "./Disponibilidad";
 import HistorialReserva from "./HistorialReserva";
-import InfoStudent from "./InfoStudent";
+import InfoStudent from "./infoStudent";
 import RegisterStudent from "./RegisterStudent";
 import ConsultarCubiculo from "./ConsultarCubiculo";
 
