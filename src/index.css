@@ -23,6 +23,7 @@ body{
   right: 5px;
   height: 21%;
   background-image: linear-gradient(to bottom, #c2272d 50%, #0e0637 50%);
+  z-index: 1;
 }
 #logoTEC{
   /*Resize the image*/
