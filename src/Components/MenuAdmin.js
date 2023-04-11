@@ -16,6 +16,7 @@ const MenuAdmin = () => {
 			<div id="menu-btns">
 				<h1 className='page-title'>Menu Administradores</h1><br></br>
 				<button onClick={()=>navigateToStats('./reportAdmin')} className='est-chooseOption'>Ver informes de uso de cubículos</button><br></br>
+				<button onClick={()=>navigate('./consultarCubiculo')} className = 'est-chooseOption'>Consultar Cubículo</button><br></br>
 				<button onClick={()=>navigateToAdd('./agregarCubiculo')} className='est-chooseOption'>Agregar nuevos cubículos</button><br></br>
 				<button onClick={()=>navigateToDeleteCubic('./eliminarCubiculo')} className='est-chooseOption'>Eliminar cubículos</button><br></br>
 				<button onClick={()=>navigateToModify('./modificarEstudiante')} className='est-chooseOption'>Modificar estudiantes</button><br></br>
