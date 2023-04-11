@@ -68,6 +68,8 @@ const LogIn = () => {
           <br />
           <input type="submit" value="Iniciar sesión" id="login-btn" />
           {error && <p>{error}</p>}
+          {/*crea un input para un boton*/}
+          <input type="button" value="Registrarse" id="login-btn" onClick={() => navigate('/registrarEstudiante')} />
         </form>
       </div>
       <div id="map">

@@ -12,13 +12,15 @@ import ModifyStudent from "./ModifyStudent";
 import CancelarReserva from "./CancelarReserva";
 import Disponibilidad from "./Disponibilidad";
 import HistorialReserva from "./HistorialReserva";
-import InfoStudent from "./infoStudent";
+import InfoStudent from "./InfoStudent";
+import RegisterStudent from "./RegisterStudent";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LogIn />} />
+        <Route path="/registrarEstudiante" element={<RegisterStudent />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/menu/reservarCubiculo" element={<ReservarCubiculo />} />
         <Route path="/menu/cancelarReserva" element={<CancelarReserva />} />
