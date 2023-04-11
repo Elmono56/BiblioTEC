@@ -32,29 +32,27 @@ const ReportAdmin = () => {
             <thead>
               <tr>
                 <th>Número cubículo</th>
-                <th>Carnet</th>
+                <th>Número de reserva</th>
                 <th>Fecha</th>
-				<th>Hora de inicio</th>
-				<th>Hora de final</th>
-				<th>Número de reserva</th>
+                <th>Hora de inicio</th>
+                <th>Hora de final</th>
               </tr>
             </thead>
             <tbody>
               {users.map((user) => (
                 <tr key={user.carnet}>
                   <td>{user.numCubiculo}</td>
-                  <td>{user.numCarnet}</td>
+                  <td>{user.numReserva}</td>
                   <td>{user.fechaReserv}</td>
-				  <td>{user.horaInicio}</td>
-				  <td>{user.horaFinal}</td>
-				  <td>{user.numReserva}</td>
+                  <td>{user.horaInicio}</td>
+                  <td>{user.horaFinal}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
         <br></br>
-        <button onClick={() => navigate('/menuAdmin')} className="est-chooseOption">
+        <button onClick={() => navigate('/menuAdmin/informeEstudiante')} className="est-chooseOption">
           Regresar
         </button>
       </div>

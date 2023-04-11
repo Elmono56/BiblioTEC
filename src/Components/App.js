@@ -12,9 +12,10 @@ import ModifyStudent from "./ModifyStudent";
 import CancelarReserva from "./CancelarReserva";
 import Disponibilidad from "./Disponibilidad";
 import HistorialReserva from "./HistorialReserva";
-import InfoStudent from "./infoStudent";
+import InfoStudent from "./InfoStudent";
 import RegisterStudent from "./RegisterStudent";
 import ConsultarCubiculo from "./ConsultarCubiculo";
+import InformeUsoEstudiante from "./InformeEstudiante";
 
 const App = () => {
   return (
@@ -28,7 +29,8 @@ const App = () => {
         <Route path="/menu/verCubiculos" element={<Disponibilidad />} />
         <Route path="/menu/verHistorial" element={<HistorialReserva />} />
         <Route path="/menuAdmin" element={<MenuAdmin />} />
-        <Route path="/menuAdmin/reportAdmin" element={<ReportAdmin />} />
+        <Route path="/menuAdmin/informeEstudiante" element={<InformeUsoEstudiante />} />
+        <Route path="/menuAdmin/informeEstudiante/reporteAdmin" element={<ReportAdmin />} />
         <Route path="/menuAdmin/agregarCubiculo" element={<AddCubiculo />} />
         <Route path="/menuAdmin/consultarCubiculo" element={<ConsultarCubiculo />} />
         <Route
