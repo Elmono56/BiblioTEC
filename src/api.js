@@ -107,25 +107,6 @@ sql
         res.status(500).send("Error executing SQL command: " + error.message);
       }
     });
-
-
-
-    app.get("/api/insertar/:capacidad/:servesp", async (req, res) => {
-      try {
-        const capacidad = req.params.capacidad;
-        const servesp = req.params.servesp;
-        await pool
-          .request()
-          .input('Capacidad', sql.Int, capacidad)
-          .input('ServEsp', sql.Int, servesp)
-          .execute('sp_InsertarCubiculo');
-        
-        res.send("Cubículo agregado correctamente");
-      } catch (error) {
-        console.error("Error executing SQL command:", error);
-        res.status(500).send("Error executing SQL command: " + error.message);
-      }
-    });
     
     
 
