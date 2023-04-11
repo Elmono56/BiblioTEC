@@ -41,10 +41,10 @@ const RegisterStudent = () => {
                         value={servicio}
                         onChange={(e) => setServicio(e.target.value)}/>
                     </div>
-                    <button type="submit" className="est-chooseOption" onClick={() => navigateInfo('/InfoStudent')}>
+                    <button type="submit" className="est-chooseOption" onClick={() => navigateInfo('/InfoStudent')} style={{marginLeft: 15}}>
                         Registrar
                     </button>
-                    <button onClick={() => navigate('../')} className="est-chooseOption">
+                    <button onClick={() => navigate('../')} className="est-chooseOption" style={{marginLeft: 15}}>
                         Regresar
                     </button>
                 </form>
