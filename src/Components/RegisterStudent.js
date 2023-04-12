@@ -16,7 +16,6 @@ const RegisterStudent = () => {
     const [fechaNacimiento, setFechaNacimiento] = useState("");
 
     const navigate = useNavigate();
-    const navigateInfo = useNavigate();
     return (
         <>
             <TopBar />
@@ -83,7 +82,7 @@ const RegisterStudent = () => {
                         value={fechaNacimiento}
                         onChange={(e) => setFechaNacimiento(e.target.value)}/>
                     </div>
-                    <button type="submit" className="est-chooseOption" onClick={() => navigateInfo('/InfoStudent')} style={{marginLeft: 15}}>
+                    <button type="submit" className="est-chooseOption" onClick={() => navigate('/InfoStudent')} style={{marginLeft: 15}}>
                         Registrar
                     </button>
                     <button onClick={() => navigate('../')} className="est-chooseOption" style={{marginLeft: 15}}>

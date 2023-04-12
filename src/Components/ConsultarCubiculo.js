@@ -13,7 +13,7 @@ const ConsultarCubiculo = () => {
         <input type='number' name='numCubiculo' min='1' required></input><br></br>
         <input type='submit' value='Consultar' className="est-chooseOption" style={{marginLeft: -10}}></input>
         </form>
-        <button onClick={() => navigate('/menuAdmin')} className='est-chooseOption' style={{marginLeft: 654}}>
+        <button onClick={() => navigate('/menuAdmin')} className='est-chooseOption' style={{marginLeft: 681}}>
                     Regresar
         </button>
         </>

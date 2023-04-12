@@ -4,20 +4,21 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Menu from "./Menu";
 import MenuAdmin from "./MenuAdmin";
 import ReportAdmin from "./ReportAdmin";
-import AddCubiculo from "./AddCubiculo";
+//import AddCubiculo from "./AddCubiculo";
 import ReservarCubiculo from "./ReservarCubiculo";
 import DeleteStudent from "./DeleteStudent";
-import DeleteCubiculo from "./DeleteCubiculo";
+//import DeleteCubiculo from "./DeleteCubiculo";
 import ModifyStudent from "./ModifyStudent";
 import CancelarReserva from "./CancelarReserva";
 import Disponibilidad from "./Disponibilidad";
 import HistorialReserva from "./HistorialReserva";
-import InfoStudent from "./infoStudent";
+import InfoStudent from "./InfoStudent";
 import RegisterStudent from "./RegisterStudent";
-import ConsultarCubiculo from "./ConsultarCubiculo";
+//import ConsultarCubiculo from "./ConsultarCubiculo";
 import InformeUsoEstudiante from "./InformeEstudiante";
-import ModificarCubiculo from "./modificarCubiculo";
-import InfoCubiculo from "./InfoCubiculo";
+//import ModificarCubiculo from "./ModificarCubiculo";
+//import InfoCubiculo from "./InfoCubiculo";
+import GestionCubiculo from "./GestionCubiculos";
 
 const App = () => {
   return (
@@ -31,20 +32,26 @@ const App = () => {
         <Route path="/menu/verCubiculos" element={<Disponibilidad />} />
         <Route path="/menu/verHistorial" element={<HistorialReserva />} />
         <Route path="/menuAdmin" element={<MenuAdmin />} />
-        <Route path="/menuAdmin/modificarCubiculo" element={<ModificarCubiculo />} />
-        <Route path="/menuAdmin/modificarCubiculo/informacionCubiculo" element={<InfoCubiculo />} />
+
+        <Route path="/menuAdmin/gestionCubiculos" element={<GestionCubiculo />} />
+
+        {/*<Route path="/menuAdmin/modificarCubiculo" element={<ModificarCubiculo />} />
+        <Route path="/menuAdmin/modificarCubiculo/informacionCubiculo" element={<InfoCubiculo />} />*/}
         <Route path="/menuAdmin/informeEstudiante" element={<InformeUsoEstudiante />} />
         <Route path="/menuAdmin/informeEstudiante/reporteAdmin" element={<ReportAdmin />} />
-        <Route path="/menuAdmin/agregarCubiculo" element={<AddCubiculo />} />
-        <Route path="/menuAdmin/consultarCubiculo" element={<ConsultarCubiculo />} />
+        
+        {/*<Route path="/menuAdmin/agregarCubiculo" element={<AddCubiculo />} />
+        <Route path="/menuAdmin/consultarCubiculo" element={<ConsultarCubiculo />} />*/}
         <Route
           path="/menuAdmin/eliminarEstudiante"
           element={<DeleteStudent />}
         />
-        <Route
+        
+        {/*<Route
           path="/menuAdmin/eliminarCubiculo"
           element={<DeleteCubiculo />}
-        />
+      />*/}
+        
         <Route
           path="/menuAdmin/modificarEstudiante"
           element={<ModifyStudent />}
