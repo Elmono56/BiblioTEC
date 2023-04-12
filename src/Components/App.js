@@ -12,11 +12,11 @@ import ModifyStudent from "./ModifyStudent";
 import CancelarReserva from "./CancelarReserva";
 import Disponibilidad from "./Disponibilidad";
 import HistorialReserva from "./HistorialReserva";
-import InfoStudent from "./InfoStudent";
+import InfoStudent from "./infoStudent";
 import RegisterStudent from "./RegisterStudent";
 import ConsultarCubiculo from "./ConsultarCubiculo";
 import InformeUsoEstudiante from "./InformeEstudiante";
-import ModificarCubiculo from "./ModificarCubiculo";
+import ModificarCubiculo from "./modificarCubiculo";
 import InfoCubiculo from "./InfoCubiculo";
 
 const App = () => {
