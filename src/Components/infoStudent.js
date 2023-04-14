@@ -28,7 +28,7 @@ const InfoStudent = () => {
         <TopBar />
             <div id="menu-btns">
                 <h1 className="page-title">Registrar estudiante</h1>
-                <form id="form-agregar">
+                <form id="form-agregar" >
                     <div className="form-group">
                         <label for="cedula">Cédula</label>
                         <input type="text" className="loginBoxes" id="cedula"
@@ -41,14 +41,17 @@ const InfoStudent = () => {
                         <label for="nombre">Nombre</label>
                         <input type="text" className="loginBoxes" id="nombre"
                             value={nombre}
+                            autoComplete="off"
                             onChange={(e) => setCarnet(e.target.value)} />
                         <label for="apellido1">Apellido 1</label>
                         <input type="text" className="loginBoxes" id="apellido1"
                             value={apellido1}
+                            autoComplete="off"
                             onChange={(e) => setApellido1(e.target.value)} />
                         <label for="apellido2">Apellido 2</label>
                         <input type="text" className="loginBoxes" id="apellido2"
                             value={apellido2}
+                            autoComplete="off"
                             onChange={(e) => setApellido2(e.target.value)} />
                         <label for="edad">Edad</label>
                         <input type="number" className="loginBoxes" id="edad" min={17} max={100}
@@ -57,10 +60,12 @@ const InfoStudent = () => {
                         <label for="correo">Correo electrónico</label>
                         <input type="email" className="loginBoxes" id="correo"
                             value={correo}
+                            autoComplete="off"
                             onChange={(e) => setCorreo(e.target.value)} />
                         <label for="contrasena">Contraseña</label>
                         <input type="password" className="loginBoxes" id="contrasena"
                             value={contrasena}
+                            autoComplete="new-password"
                             onChange={(e) => setContrasena(e.target.value)} />
                         <label>
                         Servicio especial:
@@ -114,6 +119,7 @@ const InfoStudent = () => {
                         <label for="fechaNacimiento">Fecha de Nacimiento</label>
                         <input type="date" className="loginBoxes" id="fechaNacimiento"
                             value={fechaNacimiento}
+                            autoComplete="off"
                             onChange={(e) => setFechaNacimiento(e.target.value)} />
                     </div><br></br>
                     <button type="submit" className="est-chooseOption" onClick={() => navigate('/InfoStudent')} style={{ marginLeft: 15 }}>

@@ -12,6 +12,28 @@ const DeleteStudent = () => {
     setStudentId(event.target.value);
   };
 
+<<<<<<< HEAD
+    return (
+        <>
+            <TopBar />
+            <div id="menu-btns">
+                <h1 className="page-title">Eliminar Estudiante</h1>
+                <form id="del-estudiante">
+                    <label>
+                        Numero de carnet:<br></br><br></br>
+                        <input type="text" name="name" autoComplete="off"/><br></br><br></br>
+                    </label>
+                </form>
+                <button className='est-chooseOption' onClick={handleDelete}>
+                    Eliminar
+                </button>
+                <button className='est-chooseOption' onClick={() => navigate('/menuAdmin')}>
+                    Regresar
+                </button>
+            </div>
+        </>
+    );
+=======
   const handleDelete = async (event) => {
     event.preventDefault();
     try {
@@ -63,6 +85,7 @@ const DeleteStudent = () => {
       </div>
     </>
   );
+>>>>>>> 93e484dcaf2146705e0c1e864b3ced92f594def3
 };
 
 export default DeleteStudent;

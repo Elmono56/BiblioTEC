@@ -17,7 +17,7 @@ const ConsultarReservas = () => {
             <form id="form-gestionReservas">
                 <label style={{marginRight: "20px"}}>
                     Número de reserva </label><br></br>
-                    <input type="number" name="name"/><br></br><br></br>
+                    <input type="number" name="name" min={1} autoComplete="off"/><br></br><br></br>
                 <table id="table">
                 <thead>
                     <tr>

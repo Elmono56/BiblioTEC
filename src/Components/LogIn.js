@@ -51,6 +51,7 @@ const LogIn = () => {
             name="username"
             className="loginBoxes"
             value={username}
+            autoComplete="off" 
             onChange={(e) => setUsername(e.target.value)}
           />
           <br />
@@ -61,6 +62,7 @@ const LogIn = () => {
             id="password"
             name="password"
             className="loginBoxes"
+            autoComplete="new-password" 
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />

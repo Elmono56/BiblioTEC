@@ -11,10 +11,10 @@ const ModifyStudent = () => {
             <TopBar />
             <div id="menu-btns">
                 <h1 className="page-title">Modificar estudiante</h1>
-                <form id="mod-estudiante">
+                <form id="del-estudiante">
                     <label>
                         Número de carnet:<br></br><br></br>
-                        <input type="number" name="name"/><br></br><br></br>
+                        <input type="text" name="name" autoComplete="off" required/><br></br><br></br>
                     </label>
                 </form>
                 <button onClick={() => navigateInfo('./informacionEstudiante')} className='est-chooseOption'>

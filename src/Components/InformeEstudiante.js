@@ -14,7 +14,7 @@ const InformeUsoEstudiante = () => {
                 <form id="mod-estudiante">
                     <label>
                         Número de carnet:<br></br><br></br>
-                        <input type="number" name="name"/><br></br><br></br>
+                        <input type="number" name="name" autoComplete="off" /><br></br><br></br>
                     </label>
                 </form>
                 <button onClick={() => navigateInfo('./reporteAdmin')} className='est-chooseOption'>
