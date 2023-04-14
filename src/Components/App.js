@@ -15,6 +15,7 @@ import RegisterStudent from "./RegisterStudent";
 import InformeUsoEstudiante from "./InformeEstudiante";
 import GestionCubiculo from "./GestionCubiculos";
 
+
 const App = () => {
   return (
     <BrowserRouter>

@@ -4,8 +4,11 @@ import Logo from "../img/logoTEC.png";
 import { useNavigate } from 'react-router-dom';
 
 const TopBar = () => {
-	const { jsPDF } = require("jspdf");
+	/*const { jsPDF } = require("jspdf");
 	const doc = new jsPDF();
+	doc.text("Hola mundo", 10, 10);
+
+	doc.save("prueba.pdf");*/
 	// doc.text("Hola mundo", 10, 10);
 	doc.addImage(Logo, "PNG", 10, 10, 50, 50);
 	// doc.save("prueba.pdf");
