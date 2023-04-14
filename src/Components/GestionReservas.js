@@ -3,15 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import TopBar from "./TopBar";
 import '../menu.css';
 
-const GestionCubiculo = () => {
-    const [numCubiculo, setNumCubiculo] = useState("");
-    const [name, setName] = useState("");
-    const [time, setTime] = useState("");
-    const [capacity, setCapacity] = useState(3);
-    const [id, setId] = useState("");
-    const [status, setStatus] = useState("Disponible");
-
+const GestionReservas = () => {
     const navigate = useNavigate();
+    const [capacity, setCapacity] = useState("");
+    const [id, setId] = useState(0);
+    const [status, setStatus] = useState("Confirmado");
 
     const handleStatusChange = (event) => {
         setStatus(event.target.value);
@@ -21,27 +17,42 @@ const GestionCubiculo = () => {
         <>
             <TopBar />
             <div id="menu-btns">
-                <h1 className="page-title">Gestión de Cubículos</h1>
-                <form id="mod-admin">
+                <h1 className="page-title">Gestión de reservas</h1>
+                <form id="form-gestionReservas">
                     <label>
-                        Número de cubículo:<br></br><br></br>
-                        <input type="number" name="cubNum" value={numCubiculo} defaultValue={numCubiculo}
-                        onChange={(e) => setNumCubiculo(e.target.value)}
-                        min={1} max={39} required/><br></br><br></br>
+                        Número de reserva<br></br><br></br>
+                        <input type="number" name="name"/><br></br><br></br>
                     </label>
                     <label>
-                        Nombre de cubículo:<br></br><br></br>
-                        <input type="text" name="name" value={name} defaultValue={name}
-                        onChange={(e) => setName(e.target.value)}/><br></br><br></br>
+                        Número de carnet<br></br><br></br>
+                        <input type="text" name="name"/><br></br><br></br>
                     </label>
+                    <label>Fecha de reserva</label><br></br>
+                    <input
+                        type="date"
+                        id="fecha"
+                        name="fecha"
+                        required
+                        className="form-gestionReserva"
+                    /><br></br>
+                    <label>Hora inicial</label><br></br>
+                    <input
+                        type="time"
+                        id="hora"
+                        name="hora"
+                        required
+                        className="form-gestionReserva"
+                    /><br></br>
+                    <label>Hora final</label><br></br>
+                    <input
+                        type="time"
+                        id="hora"
+                        name="hora"
+                        required
+                        className="form-gestionReserva"
+                    /><br></br>
                     <label>
-                        Tiempo de máximo uso (en horas):<br></br><br></br>
-                        <input type="number" name="time" value={time} defaultValue={time}
-                        onChange={(e) => setTime(e.target.value)}
-                        min={1} max={24}/><br></br><br></br>
-                    </label>
-                    <label>
-                        Capacidad:<br></br><br></br>
+                        Capacidad<br></br><br></br>
                         <input type="number" name="capacity" value={capacity} defaultValue={capacity}
                         onChange={(e) => setCapacity(e.target.value)}
                         min={3} max={8}/><br></br><br></br>
@@ -58,54 +69,48 @@ const GestionCubiculo = () => {
                     </label>
                     <div className="container">
                         <label >
-                            Estado de Cubículo: <br/>
+                            Estado de reserva: <br/>
                             <input
                                 type="radio"
-                                id="disponible"
+                                id="confirmado"
                                 name="estado"
-                                value="Disponible"
+                                value="Confirmado"
                                 className="radio-input"
-                                checked={status === 'Disponible'}
+                                checked={status === 'Confirmado'}
                                 onChange={handleStatusChange}
                             />
-                            <label>Disponible</label>
+                            <label>Confirmado</label>
                             <br />
                             <input
                                 type="radio"
-                                id="bloqueado"
+                                id="en espera"
                                 name="estado"
-                                value="Bloqueado"
+                                value="En Espera"
                                 className="radio-input"
-                                checked={status === 'Bloqueado'}
+                                checked={status === 'En Espera'}
                                 onChange={handleStatusChange}
                             />
-                            <label>Bloqueado</label>
+                            <label>En Espera</label>
                             <br />
                             <input
                                 type="radio"
-                                id="fuera de servicio"
+                                id="cancelado"
                                 name="estado"
-                                value="Fuera de Servicio"
+                                value="Cancelado"
                                 className="radio-input"
-                                checked={status === 'Fuera de Servicio'}
+                                checked={status === 'Cancelado'}
                                 onChange={handleStatusChange}
                             />
-                            <label>Fuera de Servicio</label>
+                            <label>Cancelado</label>
                         </label><br></br>
                     </div>
-                </form><br></br><br></br>
+                </form>
                 <div className="gestion-btns">
                     <button onClick={() => navigate('./')} className='gestion-chooseOption'>
-                        Agregar
-                    </button>
-                    <button onClick={() => navigate('./')} className='gestion-chooseOption'>
-                        Consultar
-                    </button>
-                    <button onClick={() => navigate('./')} className='gestion-chooseOption'>
-                        Modificar
-                    </button>
-                    <button onClick={() => navigate('/')} className='gestion-chooseOption'>
                         Eliminar
+                    </button>
+                    <button onClick={() => navigate('/menuAdmin')} className='gestion-chooseOption'>
+                        Modificar
                     </button>
                     <button onClick={() => navigate('/menuAdmin')} className='gestion-chooseOption'>
                         Regresar
@@ -113,6 +118,6 @@ const GestionCubiculo = () => {
                 </div>
             </div>
         </>
-    )
+    );
 }
-export default GestionCubiculo;
+export default GestionReservas;

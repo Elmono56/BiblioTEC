@@ -1,9 +1,20 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import TopBar from "./TopBar";
+import QRCode from "qrcode.react";
+import { saveAs } from "file-saver";
 import "../menu.css";
+
 const ReservarCubiculo = () => {
   const navigate = useNavigate();
+
+  const downloadQRCode = () => {
+    const canvas = document.getElementById("qr-code");
+    canvas.toBlob((blob) => {
+      saveAs(blob, "qrcode.png");
+    });
+  };
+
   return (
     <>
       <TopBar />
@@ -47,12 +58,22 @@ const ReservarCubiculo = () => {
           </label>
         </form>
 
-        <button className="est-chooseOption">Reservar</button>
+        <button
+          className="est-chooseOption"
+          onClick={() => downloadQRCode()}
+        >
+          Reservar
+        </button>
         <button onClick={() => navigate("/menu")} className="est-chooseOption">
           Regresar
         </button>
+
+        <div style={{ display: "none" }}>
+          <QRCode value="https://www.google.com" id="qr-code" />
+        </div>
       </section>
     </>
   );
 };
+
 export default ReservarCubiculo;
