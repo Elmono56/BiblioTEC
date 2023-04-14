@@ -8,7 +8,7 @@ app.use(express.json());
 
 const dbConfig = {
   user: "biblioTEC",
-  password: "1234",
+  password: "0000",
   server: "localhost",
   database: "BiblioTEC",
   options: {
@@ -108,8 +108,6 @@ sql
       }
     });
     
-    
-
     const port = process.env.PORT || 3001;
     app.listen(port, () => {
       console.log(`Server is running on port ${port}`);
