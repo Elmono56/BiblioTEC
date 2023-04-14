@@ -24,6 +24,8 @@ sql
 
     //.GET CON PARAMETROS Y RETORNA VALOR
 
+    //Validación de Login
+
     app.get("/api/login/:correo/:contrasena", async (req, res) => {
       const { correo, contrasena } = req.params;
       try {
@@ -45,25 +47,60 @@ sql
       }
     });
 
+    //Registrar nuevo estudiante
 
-    app.get("/api/login/:correo/:apellido1/:apellido2/:nombre/:carnet/:fechaNacimiento/:contrasena/:cedula", async (req, res) => {
-      const { correo, apellido1,apellido2,nombre,carnet,fechaNacimiento,contrasena,cedula } = req.params;
+    app.get(
+      "/api/login/:correo/:apellido1/:apellido2/:nombre/:carnet/:fechaNacimiento/:contrasena/:cedula",
+      async (req, res) => {
+        const {
+          correo,
+          apellido1,
+          apellido2,
+          nombre,
+          carnet,
+          fechaNacimiento,
+          contrasena,
+          cedula,
+        } = req.params;
+        try {
+          const result = await pool
+            .request()
+            .input("correoITCR", sql.VarChar(128), correo)
+            .input("apellido1", sql.VarChar(128), apellido1)
+            .input("apellido2", sql.VarChar(128), apellido2)
+            .input("nombre", sql.VarChar(128), nombre)
+            .input("carnet", sql.Int, carnet)
+            .input("fechaNacimiento", sql.Date, fechaNacimiento)
+            .input("contrasena", sql.VarChar(128), contrasena)
+            .input("cedula", sql.Int, cedula)
+
+            .output("outResultCode", sql.Int)
+            .execute("sp_RegistrarEstudiante");
+
+          const outputValue = result.output.outResultCode;
+          console.log("Output value:", outputValue);
+          res.json({ success: true, result: outputValue });
+        } catch (error) {
+          console.error("Error executing stored procedure:", error);
+          res
+            .status(500)
+            .send("Error executing stored procedure: " + error.message);
+        }
+      }
+    );
+
+    //Eliminar estudiante
+
+    app.get("/api/eliminar/:idEstudiante", async (req, res) => {
+      const { idEstudiante } = req.params;
       try {
         const result = await pool
           .request()
-          .input("correoITCR", sql.VarChar(128), correo)
-          .input("apellido1", sql.VarChar(128), apellido1)
-          .input("apellido2", sql.VarChar(128), apellido2)
-          .input("nombre", sql.VarChar(128), nombre)
-          .input("carnet", sql.Int, carnet)
-          .input("fechaNacimiento", sql.Date, fechaNacimiento)
-          .input("contrasena", sql.VarChar(128), contrasena)
-          .input("cedula", sql.Int, cedula)
+          .input("carnetEstudiante", sql.Int, idEstudiante)
+          .output("Result", sql.Int)
+          .execute("sp_EliminarEstudiante");
 
-          .output("outResultCode", sql.Int)
-          .execute("sp_RegistrarEstudiante");
-
-        const outputValue = result.output.outResultCode;
+        const outputValue = result.output.Result;
         console.log("Output value:", outputValue);
         res.json({ success: true, result: outputValue });
       } catch (error) {
@@ -73,6 +110,38 @@ sql
           .send("Error executing stored procedure: " + error.message);
       }
     });
+
+    //Agregar cubículo
+
+
+    app.get("/api/agregarCubiculo/:idEstado/:capacidad/:servEsp/:Nombre", async (req, res) => {
+      const {idEstado,capacidad,servEsp,Nombre } = req.params;
+      try {
+        const result = await pool
+          .request()
+          .input("idEstado", sql.Int, idEstado)
+          .input("capacidad", sql.Int, capacidad)
+          .input("servEsp", sql.Int, servEsp)
+          .input("Nombre", sql.VarChar(128), Nombre)
+
+          .output("Result", sql.Int)
+          .execute("sp_InsertarCubiculo");
+
+        const outputValue = result.output.Result;
+        console.log("Output value:", outputValue);
+        res.json({ success: true, result: outputValue });
+      } catch (error) {
+        console.error("Error executing stored procedure:", error);
+        res
+          .status(500)
+          .send("Error executing stored procedure: " + error.message);
+      }
+    });
+
+
+
+
+
 
     //.GET QUERY, RETORNA UNA TABLA(SELECT)
 

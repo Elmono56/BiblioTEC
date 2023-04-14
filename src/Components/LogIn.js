@@ -29,7 +29,7 @@ const LogIn = () => {
     event.preventDefault();
     const isValid = await handleClick();
     if (isValid === 1) {
-      localStorage.setItem('correoITCR', username);
+      localStorage.setItem("correoITCR", username);
       navigate("/Menu");
     } else if (isValid === 2) {
       navigate("/MenuAdmin");
@@ -67,7 +67,13 @@ const LogIn = () => {
           <br />
           <input type="submit" value="Iniciar sesión" id="login-btn" />
           {error && <p>{error}</p>}
-          <input type="button" value="Registrarse" id="login-btn" onClick={() => navigate('./registrarEstudiante')} style={{marginLeft: 80, width: 135}} />
+          <input
+            type="button"
+            value="Registrarse"
+            id="login-btn"
+            onClick={() => navigate("./registrarEstudiante")}
+            style={{ marginLeft: 80, width: 135 }}
+          />
         </form>
       </div>
       <div id="map">
