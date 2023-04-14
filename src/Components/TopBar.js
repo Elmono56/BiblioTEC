@@ -1,6 +1,5 @@
 import React from "react";
 import LogoTec from "../img/logoTEC.svg";
-import Logo from "../img/logoTEC.png";
 import { useNavigate } from 'react-router-dom';
 
 const TopBar = () => {
