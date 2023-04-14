@@ -113,35 +113,32 @@ sql
 
     //Agregar cubículo
 
+    app.get(
+      "/api/agregarCubiculo/:idEstado/:capacidad/:servEsp/:Nombre",
+      async (req, res) => {
+        const { idEstado, capacidad, servEsp, Nombre } = req.params;
+        try {
+          const result = await pool
+            .request()
+            .input("idEstado", sql.Int, idEstado)
+            .input("capacidad", sql.Int, capacidad)
+            .input("servEsp", sql.Int, servEsp)
+            .input("Nombre", sql.VarChar(128), Nombre)
 
-    app.get("/api/agregarCubiculo/:idEstado/:capacidad/:servEsp/:Nombre", async (req, res) => {
-      const {idEstado,capacidad,servEsp,Nombre } = req.params;
-      try {
-        const result = await pool
-          .request()
-          .input("idEstado", sql.Int, idEstado)
-          .input("capacidad", sql.Int, capacidad)
-          .input("servEsp", sql.Int, servEsp)
-          .input("Nombre", sql.VarChar(128), Nombre)
+            .output("Result", sql.Int)
+            .execute("sp_InsertarCubiculo");
 
-          .output("Result", sql.Int)
-          .execute("sp_InsertarCubiculo");
-
-        const outputValue = result.output.Result;
-        console.log("Output value:", outputValue);
-        res.json({ success: true, result: outputValue });
-      } catch (error) {
-        console.error("Error executing stored procedure:", error);
-        res
-          .status(500)
-          .send("Error executing stored procedure: " + error.message);
+          const outputValue = result.output.Result;
+          console.log("Output value:", outputValue);
+          res.json({ success: true, result: outputValue });
+        } catch (error) {
+          console.error("Error executing stored procedure:", error);
+          res
+            .status(500)
+            .send("Error executing stored procedure: " + error.message);
+        }
       }
-    });
-
-
-
-
-
+    );
 
     //.GET QUERY, RETORNA UNA TABLA(SELECT)
 
