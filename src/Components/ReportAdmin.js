@@ -27,8 +27,7 @@ const ReportAdmin = () => {
       </h1>
       <div id="menu-btns">
         <div id="report-content">
-          {/* Agrega aquí el contenido del informe */}
-          <table>
+          <table id="table">
             <thead>
               <tr>
                 <th>Número cubículo</th>

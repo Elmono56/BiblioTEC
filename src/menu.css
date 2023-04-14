@@ -26,7 +26,7 @@ body{
     background-color: #6a5acd;
     cursor: pointer;
     transform: scale(1.1);
-  }
+}
 
 .page-title{
   position: relative;
@@ -35,8 +35,38 @@ body{
   color: #0e0637;
   margin-left: 38%;
   margin-top: 15%;
-
 }
+
+.gestion-btns{
+  position: relative;
+  margin-top: -2%;
+  text-align: center;
+  justify-content: center;
+  
+}
+#gestion-btns h1{ 
+  margin-left: 35%;
+}
+.gestion-chooseOption{
+  background-color: #0e0637;
+  color: white;
+  border: none;
+  width: 10%;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-bottom: 1%;
+  margin-right: 50px;
+  transition: transform 0.3s ease-in-out;
+  font-family: "Roboto", sans-serif;
+  display: inline-block;
+}
+.gestion-chooseOption:hover {
+  background-color: #6a5acd;
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
 #form-reservar{
   font-family: "Roboto", sans-serif;
   display: flex;
@@ -157,11 +187,40 @@ width: 125px;
   margin-bottom: 10px;
   transition: all 0.3s ease-in-out;
 }
+#mod-estudiante input[type="text"]{
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease-in-out;
+}
 #mod-estudiante input[type="number"]:hover{
   border: 1px solid #0e0637;
   box-shadow: 0px 0px 5px #0e0637;
   cursor: pointer;
 }
+#mod-admin{
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+}
+#mod-admin input[type="number"]{
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+#mod-admin input[type="text"]{
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+#mod-admin input[type="number"]:hover{
+  border: 1px solid #0e0637;
+  box-shadow: 0px 0px 5px #0e0637;
+  cursor: pointer;
+}
+
 #del-estudiante{
   text-align: center;
   font-family: "Roboto", sans-serif;
@@ -207,25 +266,23 @@ width: 125px;
   font-weight: 700;
 }
 
-.radio-container {
+.container {
   display: flex;
-  text-align: center;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 10px;
 }
 
-.radio-input {
-  margin-right: 10px;
+.container label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
 }
 
-.radio-label {
-  font-size: 16px;
-  cursor: pointer;
+.container input[type="radio"] {
+  margin-right: 5px;
 }
 
-.radio-input:checked + .radio-label {
-  font-weight: bold;
-}
 #cons-cubiculo{
   text-align: center;
   font-family: "Roboto", sans-serif;
