@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import { useNavigate } from 'react-router-dom';
 import TopBar from "./TopBar";
 import '../menu.css';
+import axios from 'axios';
+
 
 const GestionCubiculo = () => {
     const [numCubiculo, setNumCubiculo] = useState("");
@@ -16,6 +18,29 @@ const GestionCubiculo = () => {
     const handleStatusChange = (event) => {
         setStatus(event.target.value);
     };
+    
+    const handleAgregar = async (e) => {
+        e.preventDefault();
+        try {
+          const idEstado = parseInt(idEstado);
+          const capacidad = parseInt(capacidad);
+          const servEspInt = parseInt(servEspInt);
+    
+          const response = await axios.get(
+            `http://localhost:3001/api/agregarCubiculo/${idEstado}/${capacidad}/${servEspInt}/${name}`
+          );
+          const resultado = response.data.result;
+    
+          if (resultado === 1) {
+            alert("Se agregó exitosamente");
+          } else {
+            alert("El nombre de cubículo ya existe");
+          }
+        } catch (error) {
+          console.log("Error");
+        }
+      };
+
 
     return (
         <>
@@ -95,16 +120,16 @@ const GestionCubiculo = () => {
                     </div>
                 </form><br></br><br></br>
                 <div className="gestion-btns">
-                    <button onClick={() => navigate('./')} className='gestion-chooseOption'>
+                    <button onClick={handleAgregar} className='gestion-chooseOption'>
                         Agregar
                     </button>
-                    <button onClick={() => navigate('./')} className='gestion-chooseOption'>
+                    <button onClick={handleConsultar} className='gestion-chooseOption'>
                         Consultar
                     </button>
-                    <button onClick={() => navigate('./')} className='gestion-chooseOption'>
+                    <button onClick={handleModificar} className='gestion-chooseOption'>
                         Modificar
                     </button>
-                    <button onClick={() => navigate('/')} className='gestion-chooseOption'>
+                    <button onClick={handleEliminar} className='gestion-chooseOption'>
                         Eliminar
                     </button>
                     <button onClick={() => navigate('/menuAdmin')} className='gestion-chooseOption'>
