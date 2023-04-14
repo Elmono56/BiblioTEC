@@ -14,8 +14,7 @@ import InfoStudent from "./InfoStudent";
 import RegisterStudent from "./RegisterStudent";
 import InformeUsoEstudiante from "./InformeEstudiante";
 import GestionCubiculo from "./GestionCubiculos";
-import ModificarCubiculo from "./ModificarCubiculo";
-import InfoCubiculo from "./InfoCubiculo";
+
 
 const App = () => {
   return (
