@@ -1,5 +1,6 @@
 import React from "react";
 import LogoTec from "../img/logoTEC.svg";
+import Logo from "../img/logoTEC.png";
 import { useNavigate } from 'react-router-dom';
 
 const TopBar = () => {
@@ -8,7 +9,9 @@ const TopBar = () => {
 	doc.text("Hola mundo", 10, 10);
 
 	doc.save("prueba.pdf");*/
-	//doc.save("prueba.pdf");
+	// doc.text("Hola mundo", 10, 10);
+	// doc.addImage(Logo, "PNG", 10, 10, 50, 50);
+	// doc.save("prueba.pdf");
 	const navigate = useNavigate();
 	return (
 		<div id="top-bar">

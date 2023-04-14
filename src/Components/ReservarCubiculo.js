@@ -51,8 +51,6 @@ const ReservarCubiculo = () => {
         <button onClick={() => navigate("/menu")} className="est-chooseOption">
           Regresar
         </button>
-        
-        
       </section>
     </>
   );
