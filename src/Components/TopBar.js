@@ -10,7 +10,7 @@ const TopBar = () => {
 
 	doc.save("prueba.pdf");*/
 	// doc.text("Hola mundo", 10, 10);
-	doc.addImage(Logo, "PNG", 10, 10, 50, 50);
+	// doc.addImage(Logo, "PNG", 10, 10, 50, 50);
 	// doc.save("prueba.pdf");
 	const navigate = useNavigate();
 	return (
