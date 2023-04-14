@@ -16,8 +16,15 @@ const GestionCubiculo = () => {
     const navigate = useNavigate();
 
     const handleStatusChange = (event) => {
-        setStatus(event.target.value);
-    };
+        const value = event.target.value;
+        if (value === "Disponible") {
+          setStatus(1);
+        } else if (value === "Bloqueado") {
+          setStatus(2);
+        } else if (value === "Fuera de Servicio") {
+          setStatus(3);
+        }
+      };
     
     const handleAgregar = async (e) => {
         e.preventDefault();
@@ -123,13 +130,13 @@ const GestionCubiculo = () => {
                     <button onClick={handleAgregar} className='gestion-chooseOption'>
                         Agregar
                     </button>
-                    <button onClick={handleConsultar} className='gestion-chooseOption'>
+                    <button onClick={handleAgregar} className='gestion-chooseOption'>
                         Consultar
                     </button>
-                    <button onClick={handleModificar} className='gestion-chooseOption'>
+                    <button onClick={handleAgregar} className='gestion-chooseOption'>
                         Modificar
                     </button>
-                    <button onClick={handleEliminar} className='gestion-chooseOption'>
+                    <button onClick={handleAgregar} className='gestion-chooseOption'>
                         Eliminar
                     </button>
                     <button onClick={() => navigate('/menuAdmin')} className='gestion-chooseOption'>
