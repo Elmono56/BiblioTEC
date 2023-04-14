@@ -31,7 +31,7 @@ const GestionCubiculo = () => {
                     </label>
                     <label>
                         Nombre de cubículo:<br></br><br></br>
-                        <input type="text" name="name" value={name} defaultValue={name}
+                        <input type="text" name="name" value={name} autoComplete="off"  defaultValue={name}
                         onChange={(e) => setName(e.target.value)}/><br></br><br></br>
                     </label>
                     <label>

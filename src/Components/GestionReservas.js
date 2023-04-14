@@ -21,11 +21,11 @@ const GestionReservas = () => {
                 <form id="form-gestionReservas">
                     <label>
                         Número de reserva<br></br><br></br>
-                        <input type="number" name="name"/><br></br><br></br>
+                        <input type="number" name="name" min={1} required/><br></br><br></br>
                     </label>
                     <label>
                         Número de carnet<br></br><br></br>
-                        <input type="text" name="name"/><br></br><br></br>
+                        <input type="text" name="name" autoComplete="off" required/><br></br><br></br>
                     </label>
                     <label>Fecha de reserva</label><br></br>
                     <input

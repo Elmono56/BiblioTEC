@@ -24,50 +24,51 @@ const RegisterStudent = () => {
                 <form id="form-agregar">
                     <div className="form-group">
                         <label for="cedula">Cédula</label>
-                        <input type="text" className="loginBoxes" id="cedula" placeholder="Cédula" 
+                        <input type="text" className="loginBoxes" id="cedula" 
                         value={cedula}
+                        autoComplete='off'
                         onChange={(e) => setCedula(e.target.value)}/>
                     </div>
                     <div className="form-group">
                         <label for="carnet">Carné</label>
-                        <input type="text" className="loginBoxes" id="carnet" placeholder="Carné    " 
+                        <input type="text" className="loginBoxes" id="carnet" 
                         value={carnet}
+                        autoComplete='off'
                         onChange={(e) => setCarnet(e.target.value)}/>
                     </div>
                     <div className="form-group">
                         <label for="nombre">Nombre</label>
-                        <input type="text" className="loginBoxes" id="nombre" placeholder="Nombre" 
+                        <input type="text" className="loginBoxes" id="nombre"
                         value={nombre}
+                        autoComplete='off'
                         onChange={(e) => setCarnet(e.target.value)}/>
                     </div>
                     <div className="form-group">
                         <label for="apellido1">Apellido 1</label>
-                        <input type="text" className="loginBoxes" id="apellido1" placeholder="Apellido 1" 
+                        <input type="text" className="loginBoxes" id="apellido1"
                         value={apellido1}
+                        autoComplete='off'
                         onChange={(e) => setApellido1(e.target.value)}/>
                     </div>
                     <div className="form-group">
                         <label for="apellido2">Apellido 2</label>
-                        <input type="text" className="loginBoxes" id="apellido2" placeholder="Apellido 2" 
+                        <input type="text" className="loginBoxes" id="apellido2" 
                         value={apellido2}
+                        autoComplete='off'
                         onChange={(e) => setApellido2(e.target.value)}/>
                     </div>
                     <div className="form-group">
-                        <label for="edad">Edad</label>
-                        <input type="number" className="loginBoxes" id="edad" placeholder="Edad" min={17} max={100}
-                        value={edad}
-                        onChange={(e) => setEdad(e.target.value)}/>
-                    </div>
-                    <div className="form-group">
                         <label for="correo">Correo</label>
-                        <input type="email" className="loginBoxes" id="correo" placeholder="Correo" 
+                        <input type="email" className="loginBoxes" id="correo" 
                         value={correo}
+                        autoComplete="off" 
                         onChange={(e) => setCorreo(e.target.value)}/>
                     </div>
                     <div className="form-group">
                         <label for="contrasena">Contraseña</label>
-                        <input type="password" className="loginBoxes" id="contrasena" placeholder="Contraseña" 
+                        <input type="password" className="loginBoxes" id="contrasena" 
                         value={contrasena}
+                        autoComplete="new-password" 
                         onChange={(e) => setContrasena(e.target.value)}/>
                     </div>
                     <div className="form-group">

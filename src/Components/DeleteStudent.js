@@ -19,7 +19,7 @@ const DeleteStudent = () => {
                 <form id="del-estudiante">
                     <label>
                         Numero de carnet:<br></br><br></br>
-                        <input type="text" name="name"/><br></br><br></br>
+                        <input type="text" name="name" autoComplete="off"/><br></br><br></br>
                     </label>
                 </form>
                 <button className='est-chooseOption' onClick={handleDelete}>
