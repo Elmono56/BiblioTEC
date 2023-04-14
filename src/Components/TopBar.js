@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 const TopBar = () => {
-	const { jsPDF } = require("jspdf");
+	/*const { jsPDF } = require("jspdf");
 	const doc = new jsPDF();
 	doc.text("Hola mundo", 10,10);
 
-	doc.save("prueba.pdf");
+	doc.save("prueba.pdf");*/
 	const navigate = useNavigate();
 	return (
 		<div id="top-bar">
