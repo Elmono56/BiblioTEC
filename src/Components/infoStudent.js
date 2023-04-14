@@ -4,14 +4,20 @@ import TopBar from "./TopBar";
 import '../menu.css';
 
 const InfoStudent = () => {
-    const [name, setName] = useState("");
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [id, setId] = useState("");
+    const [servicio, setServicio] = useState("");
     const [status, setStatus] = useState("Activo");
 
+    const [nombre, setNombre] = useState("");
+    const [carnet, setCarnet] = useState("");
+    const [correo, setCorreo] = useState("");
+    const [contrasena, setContrasena] = useState("");
+    const [apellido1, setApellido1] = useState("");
+    const [apellido2, setApellido2] = useState("");
+    const [cedula, setCedula] = useState("");
+    const [edad, setEdad] = useState("");
+    const [fechaNacimiento, setFechaNacimiento] = useState("");
+
     const navigate = useNavigate();
-    const navigateInfo = useNavigate();
 
     const handleStatusChange = (event) => {
         setStatus(event.target.value);
@@ -19,56 +25,56 @@ const InfoStudent = () => {
 
     return (
         <>
-            <TopBar />
+        <TopBar />
             <div id="menu-btns">
-                <h1 className="page-title">Información del estudiante</h1>
+                <h1 className="page-title">Registrar estudiante</h1>
                 <form id="form-agregar">
-                    <label>
-                        Nombre: <br />
-                        <input
-                            type="text"
-                            className="loginBoxes"
-                            name="name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                        <br />
-                    </label>
-                    <label htmlFor="username">
-                        Correo electrónico: <br />
-                        <input
-                            type="text"
-                            id="username"
-                            name="username"
-                            className="loginBoxes"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                        />
-                    </label>
-                    <label htmlFor="password">
-                        Contraseña: <br />
-                        <input
-                            type="password"
-                            id="password"
-                            className="loginBoxes"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                        <br />
-                    </label>
-                    <label>
+                    <div className="form-group">
+                        <label for="cedula">Cédula</label>
+                        <input type="text" className="loginBoxes" id="cedula"
+                            value={cedula}
+                            onChange={(e) => setCedula(e.target.value)} />
+                        <label for="carnet">Carné</label>
+                        <input type="text" className="loginBoxes" id="carnet"
+                            value={carnet}
+                            onChange={(e) => setCarnet(e.target.value)} />
+                        <label for="nombre">Nombre</label>
+                        <input type="text" className="loginBoxes" id="nombre"
+                            value={nombre}
+                            onChange={(e) => setCarnet(e.target.value)} />
+                        <label for="apellido1">Apellido 1</label>
+                        <input type="text" className="loginBoxes" id="apellido1"
+                            value={apellido1}
+                            onChange={(e) => setApellido1(e.target.value)} />
+                        <label for="apellido2">Apellido 2</label>
+                        <input type="text" className="loginBoxes" id="apellido2"
+                            value={apellido2}
+                            onChange={(e) => setApellido2(e.target.value)} />
+                        <label for="edad">Edad</label>
+                        <input type="number" className="loginBoxes" id="edad" min={17} max={100}
+                            value={edad}
+                            onChange={(e) => setEdad(e.target.value)} />
+                        <label for="correo">Correo electrónico</label>
+                        <input type="email" className="loginBoxes" id="correo"
+                            value={correo}
+                            onChange={(e) => setCorreo(e.target.value)} />
+                        <label for="contrasena">Contraseña</label>
+                        <input type="password" className="loginBoxes" id="contrasena"
+                            value={contrasena}
+                            onChange={(e) => setContrasena(e.target.value)} />
+                        <label>
                         Servicio especial:
                         <input
                             type="checkbox"
                             name="cubAccs"
-                            value={id}
-                            defaultValue={id}
-                            onChange={(e) => setId(e.target.value)}
+                            value={servicio}
+                            defaultValue={servicio}
+                            onChange={(e) => setServicio(e.target.value)}
                         />
                         <br />
                         <br />
                     </label>
-                    <div className="radio-container">
+                        <div className="radio-container">
                         <label >
                             Estado de Estudiante: <br/>
                             <input
@@ -104,14 +110,19 @@ const InfoStudent = () => {
                             />
                             <label>Moroso</label>
                         </label>
-                    </div>
+                    </div><br></br>
+                        <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                        <input type="date" className="loginBoxes" id="fechaNacimiento"
+                            value={fechaNacimiento}
+                            onChange={(e) => setFechaNacimiento(e.target.value)} />
+                    </div><br></br>
+                    <button type="submit" className="est-chooseOption" onClick={() => navigate('/InfoStudent')} style={{ marginLeft: 15 }}>
+                        Registrar
+                    </button>
+                    <button onClick={() => navigate('../')} className="est-chooseOption" style={{ marginLeft: 15 }}>
+                        Regresar
+                    </button>
                 </form>
-                <button onClick={() => navigateInfo('/menuAdmin/modificarEstudiante')} className='est-chooseOption'>
-                    Aceptar
-                </button>
-                <button onClick={() => navigate('/menuAdmin/modificarEstudiante')} className='est-chooseOption'>
-                    Regresar
-                </button>
             </div>
         </>
     )

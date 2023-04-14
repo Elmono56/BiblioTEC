@@ -3,13 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import TopBar from "./TopBar";
 import '../menu.css';
 
-const InfoCubiculo = () => {
+const GestionCubiculo = () => {
+    const [numCubiculo, setNumCubiculo] = useState("");
+    const [name, setName] = useState("");
     const [capacity, setCapacity] = useState("");
     const [id, setId] = useState("");
     const [status, setStatus] = useState("Disponible");
 
     const navigate = useNavigate();
-    const navigateInfo = useNavigate();
 
     const handleStatusChange = (event) => {
         setStatus(event.target.value);
@@ -19,8 +20,19 @@ const InfoCubiculo = () => {
         <>
             <TopBar />
             <div id="menu-btns">
-                <h1 className="page-title">Modificar Cubículo</h1>
-                <form id="mod-estudiante">
+                <h1 className="page-title">Gestión de Cubículos</h1>
+                <form id="mod-admin">
+                    <label>
+                        Número de cubículo:<br></br><br></br>
+                        <input type="number" name="cubNum" value={numCubiculo} defaultValue={numCubiculo}
+                        onChange={(e) => setNumCubiculo(e.target.value)}
+                        min={1} max={39} required/><br></br><br></br>
+                    </label>
+                    <label>
+                        Nombre de cubículo:<br></br><br></br>
+                        <input type="text" name="name" value={name} defaultValue={name}
+                        onChange={(e) => setName(e.target.value)}/><br></br><br></br>
+                    </label>
                     <label>
                         Capacidad:<br></br><br></br>
                         <input type="number" name="capacity" value={capacity} defaultValue={capacity}
@@ -35,10 +47,8 @@ const InfoCubiculo = () => {
                             defaultValue={id}
                             onChange={(e) => setId(e.target.value)}
                         />
-                        <br />
-                        <br />
                     </label>
-                    <div className="radio-container">
+                    <div className="container">
                         <label >
                             Estado de Cubículo: <br/>
                             <input
@@ -73,17 +83,25 @@ const InfoCubiculo = () => {
                                 onChange={handleStatusChange}
                             />
                             <label>Fuera de Servicio</label>
-                        </label>
+                        </label><br></br>
                     </div>
-                </form>
-                <button onClick={() => navigateInfo('./modificarCubiculo')} className='est-chooseOption'>
-                    Aceptar
-                </button>
-                <button onClick={() => navigate('/menuAdmin')} className='est-chooseOption'>
-                    Regresar
-                </button>
+                </form><br></br><br></br>
+                <div className="gestion-btns">
+                    <button onClick={() => navigate('./')} className='gestion-chooseOption'>
+                        Agregar
+                    </button>
+                    <button onClick={() => navigate('./')} className='gestion-chooseOption'>
+                        Consultar
+                    </button>
+                    <button onClick={() => navigate('./')} className='gestion-chooseOption'>
+                        Modificar
+                    </button>
+                    <button onClick={() => navigate('/')} className='gestion-chooseOption'>
+                        Eliminar
+                    </button>
+                </div>
             </div>
         </>
     )
 }
-export default InfoCubiculo;
+export default GestionCubiculo;
