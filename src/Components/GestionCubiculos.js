@@ -9,8 +9,8 @@ const GestionCubiculo = () => {
   const [name, setName] = useState("");
   const [time, setTime] = useState("");
   const [capacity, setCapacity] = useState(3);
-  const [id, setId] = useState("");
-  const [status, setStatus] = useState("Disponible");
+  const [id, setId] = useState(1);
+  const [status, setStatus] = useState(1);
 
   const navigate = useNavigate();
 
@@ -28,12 +28,8 @@ const GestionCubiculo = () => {
   const handleAgregar = async (e) => {
     e.preventDefault();
     try {
-      const idEstado = parseInt(idEstado);
-      const capacidad = parseInt(capacidad);
-      const servEspInt = parseInt(servEspInt);
-
       const response = await axios.get(
-        `http://localhost:3001/api/agregarCubiculo/${idEstado}/${capacidad}/${servEspInt}/${name}`
+        `http://localhost:3001/api/agregarCubiculo/${status}/${capacity}/${id}/${name}`
       );
       const resultado = response.data.result;
 
@@ -42,8 +38,32 @@ const GestionCubiculo = () => {
       } else {
         alert("El nombre de cubículo ya existe");
       }
-    } catch (error) {
-      console.log("Error");
+    } catch (error) {}
+  };
+
+
+  const handleEliminar = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/api/eliminarCubiculo/${numCubiculo}`
+      );
+      const resultado = response.data.result;
+
+      if (resultado === 1) {
+        alert("Se eliminó exitosamente");
+      } else {
+        alert("El cubículo no existe");
+      }
+    } catch (error) {}
+  };
+
+  const handleIdChange = (e) => {
+    const isChecked = e.target.checked;
+    if (isChecked) {
+      setId(2);
+    } else {
+      setId(1);
     }
   };
 
@@ -60,7 +80,6 @@ const GestionCubiculo = () => {
               type="number"
               name="cubNum"
               value={numCubiculo}
-              defaultValue={numCubiculo}
               onChange={(e) => setNumCubiculo(e.target.value)}
               min={1}
               max={39}
@@ -77,7 +96,6 @@ const GestionCubiculo = () => {
               name="name"
               value={name}
               autoComplete="off"
-              defaultValue={name}
               onChange={(e) => setName(e.target.value)}
             />
             <br></br>
@@ -90,7 +108,6 @@ const GestionCubiculo = () => {
               type="number"
               name="time"
               value={time}
-              defaultValue={time}
               onChange={(e) => setTime(e.target.value)}
               min={1}
               max={24}
@@ -105,7 +122,6 @@ const GestionCubiculo = () => {
               type="number"
               name="capacity"
               value={capacity}
-              defaultValue={capacity}
               onChange={(e) => setCapacity(e.target.value)}
               min={3}
               max={8}
@@ -117,10 +133,10 @@ const GestionCubiculo = () => {
             Servicio especial:
             <input
               type="checkbox"
+              id="cubAccs"
               name="cubAccs"
-              value={id}
-              defaultValue={id}
-              onChange={(e) => setId(e.target.value)}
+              checked={id === 2}
+              onChange={handleIdChange}
             />
           </label>
           <div className="container">
@@ -132,7 +148,6 @@ const GestionCubiculo = () => {
                 name="estado"
                 value="Disponible"
                 className="radio-input"
-                checked={status === "Disponible"}
                 onChange={handleStatusChange}
               />
               <label>Disponible</label>
@@ -143,7 +158,6 @@ const GestionCubiculo = () => {
                 name="estado"
                 value="Bloqueado"
                 className="radio-input"
-                checked={status === "Bloqueado"}
                 onChange={handleStatusChange}
               />
               <label>Bloqueado</label>
@@ -154,7 +168,6 @@ const GestionCubiculo = () => {
                 name="estado"
                 value="Fuera de Servicio"
                 className="radio-input"
-                checked={status === "Fuera de Servicio"}
                 onChange={handleStatusChange}
               />
               <label>Fuera de Servicio</label>
@@ -174,7 +187,7 @@ const GestionCubiculo = () => {
           <button onClick={handleAgregar} className="gestion-chooseOption">
             Modificar
           </button>
-          <button onClick={handleAgregar} className="gestion-chooseOption">
+          <button onClick={handleEliminar} className="gestion-chooseOption">
             Eliminar
           </button>
           <button
