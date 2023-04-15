@@ -82,7 +82,6 @@ const ReservarCubiculo = () => {
         console.error("Error al enviar el correo electrónico:", error);
       }
     );
-    navigate("/menu");
   };
 
   return (
@@ -125,7 +124,7 @@ const ReservarCubiculo = () => {
         </button>
 
         <div style={{ display: "none" }}>
-          <QRCode value="https://www.google.com" id="qr-code" />
+          <QRCode value="https://www.tec.ac.cr/" id="qr-code" />
         </div>
       </section>
     </>

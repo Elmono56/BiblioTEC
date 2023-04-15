@@ -17,7 +17,7 @@ import GestionCubiculo from "./GestionCubiculos";
 import GestionReservas from "./GestionReservas";
 import ConsultarReservas from "./ConsultarReservas";
 import Notificar from "./Notificar";
-
+import ConsultarCubiculo from "./ConsultarCubiculo";
 
 const App = () => {
   return (
@@ -33,6 +33,7 @@ const App = () => {
         <Route path="/menuAdmin" element={<MenuAdmin />} />
         <Route path="/menuAdmin/gestionCubiculos" element={<GestionCubiculo />} />
         <Route path="/menuAdmin/gestionReservas" element={<GestionReservas />} />
+        <Route path="/menuAdmin/consultarCubiculo" element={<ConsultarCubiculo />} />
         <Route path="/menuAdmin/consultarReservas" element={<ConsultarReservas />} />
         <Route path="/menuAdmin/informeEstudiante" element={<InformeUsoEstudiante />} />
         <Route path="/menuAdmin/informeEstudiante/reporteAdmin" element={<ReportAdmin />} />
