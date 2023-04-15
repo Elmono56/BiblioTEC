@@ -140,6 +140,28 @@ sql
       }
     );
 
+    //Eliminar cubiculo
+
+    app.get("/api/eliminarCubiculo/:idCubiculo", async (req, res) => {
+      const { idCubiculo } = req.params;
+      try {
+        const result = await pool
+          .request()
+          .input("idCubiculo", sql.Int, idCubiculo)
+          .output("Result", sql.Int)
+          .execute("sp_EliminarCubiculo");
+
+        const outputValue = result.output.Result;
+        console.log("Output value:", outputValue);
+        res.json({ success: true, result: outputValue });
+      } catch (error) {
+        console.error("Error executing stored procedure:", error);
+        res
+          .status(500)
+          .send("Error executing stored procedure: " + error.message);
+      }
+    });
+
     //.GET QUERY, RETORNA UNA TABLA(SELECT)
 
     // app.get("/api/reporte", async (req, res) => {

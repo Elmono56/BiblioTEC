@@ -41,6 +41,23 @@ const GestionCubiculo = () => {
     } catch (error) {}
   };
 
+
+  const handleEliminar = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/api/eliminarCubiculo/${numCubiculo}`
+      );
+      const resultado = response.data.result;
+
+      if (resultado === 1) {
+        alert("Se eliminó exitosamente");
+      } else {
+        alert("El cubículo no existe");
+      }
+    } catch (error) {}
+  };
+
   const handleIdChange = (e) => {
     const isChecked = e.target.checked;
     if (isChecked) {
@@ -170,7 +187,7 @@ const GestionCubiculo = () => {
           <button onClick={handleAgregar} className="gestion-chooseOption">
             Modificar
           </button>
-          <button onClick={handleAgregar} className="gestion-chooseOption">
+          <button onClick={handleEliminar} className="gestion-chooseOption">
             Eliminar
           </button>
           <button
