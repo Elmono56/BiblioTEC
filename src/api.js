@@ -20,12 +20,29 @@ const dbConfig = {
 sql
   .connect(dbConfig)
   .then((pool) => {
-    console.log("Connected to SQL Server");
+    console.log("Connected to SQL Server");})
 
     //.GET CON PARAMETROS Y RETORNA VALOR
-
-    //Validación de Login
-
+    //Reservar cubículo 
+    app.get("api/reservar/:capacidad/:accesible", async (req, res) => {
+      const { capacidad, accesible } = req.params;
+      try {
+        const result = await pool
+          .request()
+          .input("capacidad", sql.Int, capacidad)
+          .input("accesible", sql.Bit, accesible)
+          .output("Result", sql.Int)
+          .execute("sp_ReservarCubiculo");
+          const outputValue = result.output.Result;
+          console.log("Resultado de salida:", outputValue);
+          res.json({ success: true, result: outputValue });
+      } catch (error) {
+        console.error("Error executing stored procedure:", error);
+        res
+          .status(500)
+          .send("Error executing stored procedure: " + error.message);
+      }
+   //Validación de Login
     app.get("/api/login/:correo/:contrasena", async (req, res) => {
       const { correo, contrasena } = req.params;
       try {
@@ -139,28 +156,6 @@ sql
         }
       }
     );
-
-    //Eliminar cubiculo
-
-    app.get("/api/eliminarCubiculo/:idCubiculo", async (req, res) => {
-      const { idCubiculo } = req.params;
-      try {
-        const result = await pool
-          .request()
-          .input("idCubiculo", sql.Int, idCubiculo)
-          .output("Result", sql.Int)
-          .execute("sp_EliminarCubiculo");
-
-        const outputValue = result.output.Result;
-        console.log("Output value:", outputValue);
-        res.json({ success: true, result: outputValue });
-      } catch (error) {
-        console.error("Error executing stored procedure:", error);
-        res
-          .status(500)
-          .send("Error executing stored procedure: " + error.message);
-      }
-    });
 
     //.GET QUERY, RETORNA UNA TABLA(SELECT)
 
