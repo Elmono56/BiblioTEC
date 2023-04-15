@@ -6,8 +6,10 @@ import { saveAs } from "file-saver";
 import emailjs from 'emailjs-com';
 import "../menu.css";
 
+
 const ReservarCubiculo = () => {
   const navigate = useNavigate();
+
 
   const downloadQRCode = () => {
     const canvas = document.getElementById("qr-code");
@@ -84,12 +86,41 @@ const ReservarCubiculo = () => {
     );
   };
 
-  return (
+
+  const [numPersonas, setNumPersonas] = useState("");
+  const [accesible, setAccesible] = useState(false);
+
+  const handleNumPersonasChange = (e) => {
+    setNumPersonas(e.target.value);
+  };
+
+  const handleAccesibleChange = (e) => {
+    setAccesible(e.target.checked);
+  };
+
+  const filtrar = async () => {
+    try {
+      const response = await fetch(`/api/filtrar/${numPersonas}/${accesible}`);
+      const data = await response.json();
+      // Do something with the data
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const handleFiltrarClick = (e) => {
+    e.preventDefault();
+    filtrar();
+  };
+
+
+  
+
+return (
     <>
       <TopBar />
       <section id="rsv-cub">
         <h1 className="page-title">Filtrar cubículo</h1>
-        {/*Formulario que pida el número de personas que van a usar el cubículo, un input tipo date y la hora*/}
         <form id="form-reservar" onSubmit={sendEmail}>
           <label htmlFor="numPersonas">Número de personas</label>
           <br></br>
@@ -101,20 +132,30 @@ const ReservarCubiculo = () => {
             max="8"
             required
             className="UIReservar"
+            value={numPersonas}
+            onChange={handleNumPersonasChange}
           />
           <label htmlFor="accesible">
             Cubiculo accesible:
-            <input type="checkbox" name="accesible" id="accesible"/>
-            <br></br><br></br>
+            <input
+              type="checkbox"
+              name="accesible"
+              id="accesible"
+              checked={accesible}
+              onChange={handleAccesibleChange}
+            />
+            <br></br>
+            <br></br>
           </label>
         </form>
 
         <button
           className="est-chooseOption"
-          onClick={(e) => {
+          onClick={() => {
             downloadQRCode();
             sendEmail(e);
             generatePDF();
+            handleFiltrarClick();
           }}
         >
           Filtrar
