@@ -157,23 +157,6 @@ sql
     //   }
     // });
 
-<<<<<<< HEAD
-    app.get("/api/historial/:carnet", async (req, res) => {
-      try {
-        const carnet = req.params.carnet;
-        const result = await pool
-          .request()
-          .input('carnet', sql.BigInt, carnet)
-          .execute('sp_HistorialReservas');
-        
-        res.json(result.recordset);
-      } catch (error) {
-        console.error("Error executing SQL command:", error);
-        res.status(500).send("Error executing SQL command: " + error.message);
-      }
-    });
-    
-=======
     // //.GET CON PARAMETROS, RETORNA TABLA(SELECT)
     // app.get("/api/historial/:carnet", async (req, res) => {
     //   try {
@@ -190,7 +173,6 @@ sql
     //   }
     // });
 
->>>>>>> a16bb4e4ee4038cc39fa027b0ddeed1c5ebe7dc6
     const port = process.env.PORT || 3001;
     app.listen(port, () => {
       console.log(`Server is running on port ${port}`);
