@@ -16,6 +16,7 @@ import InformeUsoEstudiante from "./InformeEstudiante";
 import GestionCubiculo from "./GestionCubiculos";
 import GestionReservas from "./GestionReservas";
 import ConsultarReservas from "./ConsultarReservas";
+import Notificar from "./Notificar";
 
 
 const App = () => {
@@ -38,6 +39,7 @@ const App = () => {
         <Route path="/menuAdmin/eliminarEstudiante" element={<DeleteStudent />} />
         <Route path="/menuAdmin/modificarEstudiante" element={<ModifyStudent />} />
         <Route path="/menuAdmin/modificarEstudiante/informacionEstudiante" element={<InfoStudent />} />
+        <Route path="/menuAdmin/notificarEstudiante" element={<Notificar />} />
       </Routes>
     </BrowserRouter>
   );
