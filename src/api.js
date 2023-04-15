@@ -8,7 +8,7 @@ app.use(express.json());
 
 const dbConfig = {
   user: "biblioTEC",
-  password: "1234",
+  password: "0000",
   server: "localhost",
   database: "BiblioTEC",
   options: {
