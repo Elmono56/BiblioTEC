@@ -82,7 +82,6 @@ const ReservarCubiculo = () => {
         console.error("Error al enviar el correo electrónico:", error);
       }
     );
-    navigate("/menu");
   };
 
   return (
@@ -92,11 +91,6 @@ const ReservarCubiculo = () => {
         <h1 className="page-title">Reservar cubículo</h1>
         {/*Formulario que pida el número de personas que van a usar el cubículo, un input tipo date y la hora*/}
         <form id="form-reservar" onSubmit={sendEmail}>
-          <label>Disponibles: </label><br></br>
-          <select name="cubDisponibles">
-          <option value>Selecciona un cubículo</option>
-          <option value=""></option>
-          </select><br></br>
           <label htmlFor="numPersonas">Número de personas</label>
           <br></br>
           <input
@@ -148,7 +142,7 @@ const ReservarCubiculo = () => {
         </button>
 
         <div style={{ display: "none" }}>
-          <QRCode value="https://www.google.com" id="qr-code" />
+          <QRCode value="https://www.tec.ac.cr/" id="qr-code" />
         </div>
       </section>
     </>
