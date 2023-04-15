@@ -7,25 +7,28 @@ import "../menu.css";
 const ConsultarReservas = () => {
   const navigate = useNavigate();
   const [reservations, setReservations] = useState([]);
-  const [reservationNumber, setReservationNumber] = useState("");
+  const [reservationNumber, setReservationNumber] = useState(1);
 
   const handleConsultarClick = async (e) => {
-    if (reservationNumber === "") {
-      e.preventDefault();
-      try {
-        const response = await axios.get(
-          "http://localhost:3001/api/consultarReserva"
-        );
-        setReservations(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
+    
     e.preventDefault();
     try {
       const response = await axios.get(
-        `http://localhost:3001/api/consultarReservaEsp/${reservationNumber}`
+        "http://localhost:3001/api/consultarReserva"
+      );
+      setReservations(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+  const handleConsultarEspecifico = async (e) => {
+    
+    e.preventDefault();
+    try {
+      const response = await axios.get(
+        "http://localhost:3001/api/consultarReserva"
       );
       setReservations(response.data);
     } catch (error) {
@@ -45,14 +48,7 @@ const ConsultarReservas = () => {
         <form id="form-gestionReservas">
           <label style={{ marginRight: "20px" }}>Número de reserva </label>
           <br></br>
-          <input
-            type="number"
-            name="name"
-            min={1}
-            autoComplete="off"
-            value={reservationNumber}
-            onChange={handleReservationNumberChange}
-          />
+          <input type="number" name="name" min={1} autoComplete="off" value={reservationNumber} onChange={handleReservationNumberChange} />
           <br></br>
           <br></br>
           <table id="table">
@@ -87,7 +83,13 @@ const ConsultarReservas = () => {
             onClick={handleConsultarClick}
             className="gestion-chooseOption"
           >
-            Consultar
+            Consultar todos
+          </button>
+          <button
+            onClick={handleConsultarEspecifico}
+            className="gestion-chooseOption"
+          >
+            Consultar cubiculo
           </button>
           <button
             onClick={() => navigate("/menuAdmin")}
