@@ -7,11 +7,12 @@ import '../menu.css';
 const ReportAdmin = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
+  const carnet = localStorage.getItem('carnet');
 
   useEffect(() => {
     async function fetchUsers() {
       try {
-        const response = await axios.get('http://localhost:3001/api/reporte');
+        const response = await axios.get(`http://localhost:3001/api/reservasEstudiante/${carnet}`);
         setUsers(response.data);
       } catch (error) {
         console.error('Error fetching users:', error);
@@ -40,8 +41,8 @@ const ReportAdmin = () => {
             <tbody>
               {users.map((user) => (
                 <tr key={user.carnet}>
-                  <td>{user.numCubiculo}</td>
-                  <td>{user.numReserva}</td>
+                  <td>{user.idCubiculo}</td>
+                  <td>{user.idReserva}</td>
                   <td>{user.fechaReserv}</td>
                   <td>{user.horaInicio}</td>
                   <td>{user.horaFinal}</td>
