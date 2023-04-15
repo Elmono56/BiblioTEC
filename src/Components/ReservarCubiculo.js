@@ -91,6 +91,11 @@ const ReservarCubiculo = () => {
         <h1 className="page-title">Reservar cubículo</h1>
         {/*Formulario que pida el número de personas que van a usar el cubículo, un input tipo date y la hora*/}
         <form id="form-reservar" onSubmit={sendEmail}>
+          <label>Disponibles: </label><br></br>
+          <select name="cubDisponibles">
+          <option value>Selecciona un cubículo</option>
+          <option value=""></option>
+          </select><br></br>
           <label htmlFor="numPersonas">Número de personas</label>
           <br></br>
           <input

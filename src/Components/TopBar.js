@@ -8,7 +8,7 @@ const TopBar = () => {
 	doc.text("Hola mundo", 10, 10);
 
 	doc.save("prueba.pdf");*/
-	// doc.text("Hola mundo", 10, 10);
+	// doc.text("Hola mundo", 10, 10);	
 	// doc.addImage(Logo, "PNG", 10, 10, 50, 50);
 	// doc.save("prueba.pdf");
 	const navigate = useNavigate();
