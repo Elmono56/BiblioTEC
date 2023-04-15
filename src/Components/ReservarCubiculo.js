@@ -82,6 +82,7 @@ const ReservarCubiculo = () => {
         console.error("Error al enviar el correo electrónico:", error);
       }
     );
+    navigate("/menu");
   };
 
   return (
