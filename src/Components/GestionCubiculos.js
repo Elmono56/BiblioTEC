@@ -42,6 +42,24 @@ const GestionCubiculo = () => {
   };
 
 
+  const handleModificar = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/api/ModificarCubiculo/${numCubiculo}/${name}/${status}/${capacity}/${id}/${time}`
+      );
+      const resultado = response.data.result;
+
+      if (resultado === 1) {
+        alert("Se modificó exitosamente");
+      } else {
+        alert("El cubículo no existe");
+      }
+    } catch (error) {}
+  };
+  
+
+
   const handleEliminar = async (e) => {
     e.preventDefault();
     try {
@@ -184,7 +202,7 @@ const GestionCubiculo = () => {
           <button onClick={handleAgregar} className="gestion-chooseOption">
             Consultar
           </button>
-          <button onClick={handleAgregar} className="gestion-chooseOption">
+          <button onClick={handleModificar} className="gestion-chooseOption">
             Modificar
           </button>
           <button onClick={handleEliminar} className="gestion-chooseOption">

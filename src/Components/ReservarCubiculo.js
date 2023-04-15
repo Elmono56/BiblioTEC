@@ -89,14 +89,9 @@ const ReservarCubiculo = () => {
     <>
       <TopBar />
       <section id="rsv-cub">
-        <h1 className="page-title">Reservar cubículo</h1>
+        <h1 className="page-title">Filtrar cubículo</h1>
         {/*Formulario que pida el número de personas que van a usar el cubículo, un input tipo date y la hora*/}
         <form id="form-reservar" onSubmit={sendEmail}>
-          <label>Disponibles: </label><br></br>
-          <select name="cubDisponibles">
-          <option value>Selecciona un cubículo</option>
-          <option value=""></option>
-          </select><br></br>
           <label htmlFor="numPersonas">Número de personas</label>
           <br></br>
           <input
@@ -105,24 +100,6 @@ const ReservarCubiculo = () => {
             name="numPersonas"
             min="3"
             max="8"
-            required
-            className="UIReservar"
-          />
-          <label htmlFor="fecha">Fecha</label>
-          <br></br>
-          <input
-            type="date"
-            id="fecha"
-            name="fecha"
-            required
-            className="UIReservar"
-          />
-          <label htmlFor="hora">Hora</label>
-          <br></br>
-          <input
-            type="time"
-            id="hora"
-            name="hora"
             required
             className="UIReservar"
           />
@@ -141,7 +118,7 @@ const ReservarCubiculo = () => {
             generatePDF();
           }}
         >
-          Reservar
+          Filtrar
         </button>
         <button onClick={() => navigate("/menu")} className="est-chooseOption">
           Regresar
