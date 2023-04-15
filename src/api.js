@@ -157,38 +157,27 @@ sql
       }
     );
 
-    //.GET QUERY, RETORNA UNA TABLA(SELECT)
+    //Eliminar cubiculo
 
-    // app.get("/api/reporte", async (req, res) => {
-    //   try {
-    //     const result = await pool
-    //       .request()
-    //       .query(
-    //         "SELECT TOP (1000) [numCubiculo],[numCarnet],[fechaReserv],[horaInicio],[horaFinal],[numReserva] FROM [BiblioTEC].[dbo].[Reservaciones]"
-    //       );
+    app.get("/api/eliminarCubiculo/:idCubiculo", async (req, res) => {
+      const { idCubiculo } = req.params;
+      try {
+        const result = await pool
+          .request()
+          .input("idCubiculo", sql.Int, idCubiculo)
+          .output("Result", sql.Int)
+          .execute("sp_EliminarCubiculo");
 
-    //     res.json(result.recordset);
-    //   } catch (error) {
-    //     console.error("Error executing SQL command:", error);
-    //     res.status(500).send("Error executing SQL command: " + error.message);
-    //   }
-    // });
-
-    // //.GET CON PARAMETROS, RETORNA TABLA(SELECT)
-    // app.get("/api/historial/:carnet", async (req, res) => {
-    //   try {
-    //     const carnet = req.params.carnet;
-    //     const result = await pool
-    //       .request()
-    //       .input("carnet", sql.BigInt, carnet)
-    //       .execute("sp_HistorialReservas");
-
-    //     res.json(result.recordset);
-    //   } catch (error) {
-    //     console.error("Error executing SQL command:", error);
-    //     res.status(500).send("Error executing SQL command: " + error.message);
-    //   }
-    // });
+        const outputValue = result.output.Result;
+        console.log("Output value:", outputValue);
+        res.json({ success: true, result: outputValue });
+      } catch (error) {
+        console.error("Error executing stored procedure:", error);
+        res
+          .status(500)
+          .send("Error executing stored procedure: " + error.message);
+      }
+    });
 
     const port = process.env.PORT || 3001;
     app.listen(port, () => {

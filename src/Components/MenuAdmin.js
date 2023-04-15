@@ -20,7 +20,8 @@ const MenuAdmin = () => {
 				<button onClick={()=>navigate('./gestionReservas')} className='est-chooseOption'>Gestión de reservas</button><br></br>
 				< button onClick={()=>navigate('./consultarReservas')} className='est-chooseOption'>Consultar reservas</button><br></br>
 				<button onClick={()=>navigate('./modificarEstudiante')} className='est-chooseOption'>Modificar estudiantes</button><br></br>
-				<button onClick={()=>navigate('./eliminarEstudiante')} className='est-chooseOption'>Eliminar estudiantes</button><br></br><br></br>
+				<button onClick={()=>navigate('./eliminarEstudiante')} className='est-chooseOption'>Eliminar estudiantes</button><br></br>
+				<button onClick={()=>navigate('./notificarEstudiante')} className='est-chooseOption'>Notificar estudiantes</button><br></br><br></br>
 				<button onClick={() => navigate('../')} className='est-chooseOption'>Salir</button><br></br>
 			</div>
 		</>
