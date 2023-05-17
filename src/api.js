@@ -179,6 +179,174 @@ sql
       }
     });
 
+    app.get("/api/reservasEstudiante/:numCarnet", async (req, res) => {
+      const { numCarnet } = req.params;
+      try {
+        const result = await pool
+          .request()
+          .input("numCarnet", sql.Int, numCarnet)
+          .execute("sp_VerReservacionesPorEstudiante");
+
+        res.json(result.recordset);
+      } catch (error) {
+        console.error("Error executing stored procedure:", error);
+        res
+          .status(500)
+          .send("Error executing stored procedure: " + error.message);
+      }
+    });
+
+    // Consultar reserva
+
+    app.get("/api/consultarReserva", async (req, res) => {
+      try {
+        const result = await pool
+          .request()
+          .query(
+            "SELECT [numCarnet],[fechaReserv],[horaInicio],[horaFinal],[capacidad],[servEsp],[estadoReserva] FROM Reservaciones;"
+          );
+
+        res.json(result.recordset);
+      } catch (error) {
+        console.error("Error executing stored procedure:", error);
+        res
+          .status(500)
+          .send("Error executing stored procedure: " + error.message);
+      }
+    });
+
+    //Consultar reserva cubiculo
+
+    //.GET CON PARAMETROS, RETORNA TABLA(SELECT)
+    app.get("/api/consultarReservaEsp/:numCubiculo", async (req, res) => {
+      try {
+        const numCubiculo = req.params.numCubiculo;
+        const result = await pool
+          .request()
+          .input("idCubiculo", sql.Int, numCubiculo)
+          .output("Result", sql.Int)
+          .execute("sp_ObtenerReservacionesCubiculo");
+
+        res.json(result.recordset);
+      } catch (error) {
+        console.error("Error executing SQL command:", error);
+        res.status(500).send("Error executing SQL command: " + error.message);
+      }
+    });
+
+    //Eliminar reserva
+
+    app.get("/api/eliminarReserva/:idReserva", async (req, res) => {
+      const { idReserva } = req.params;
+      try {
+        const result = await pool
+          .request()
+          .input("idReserva", sql.Int, idReserva)
+          .output("existeReserva", sql.Int)
+          .execute("sp_EliminarReserva");
+
+        const outputValue = result.output.existeReserva;
+        console.log("Output value:", outputValue);
+        res.json({ success: true, result: outputValue });
+      } catch (error) {
+        console.error("Error executing stored procedure:", error);
+        res
+          .status(500)
+          .send("Error executing stored procedure: " + error.message);
+      }
+    });
+
+    //Modificar tiempos cubiclulos
+
+    app.get(
+      "/api/ModificarCubiculo/:idCubiculo/:nombre/:idEstado/:capacidad/:servEsp/:tiemposUso",
+      async (req, res) => {
+        const { idCubiculo,nombre,idEstado,capacidad,servEsp,tiemposUso } = req.params;
+        try {
+          const result = await pool
+            .request()
+            .input("idCubiculo", sql.Int, idCubiculo)
+            .input("Nombre", sql.VarChar(128), nombre)
+            .input("idEstado", sql.Int, idEstado)
+            .input("capacidad", sql.Int, capacidad)
+            .input("servEsp", sql.Int, servEsp)
+            .input("tiempoDeUsoMaximo", sql.Int, tiemposUso)
+            .output("Result", sql.Int)
+            .execute("[sp_ModificarCubiculoPorID]");
+
+          const outputValue = result.output.Result;
+          console.log("Output value:", outputValue);
+          res.json({ success: true, result: outputValue });
+        } catch (error) {
+          console.error("Error executing stored procedure:", error);
+          res
+            .status(500)
+            .send("Error executing stored procedure: " + error.message);
+        }
+      }
+    );
+
+    //FILTRAR
+
+
+    app.get(
+      "/api/filtrar/:capacidad/:servEsp",
+      async (req, res) => {
+        const {capacidad,servEsp} = req.params;
+        try {
+          const result = await pool
+            .request()
+            .input("capacidad", sql.Int, capacidad)
+            .input("servEsp", sql.Int, servEsp)
+            .output("outResultCode", sql.Int)
+            .execute("sp_FiltroCubiculo");
+            res.json(result.recordset);
+        } catch (error) {
+          console.error("Error executing stored procedure:", error);
+          res
+            .status(500)
+            .send("Error executing stored procedure: " + error.message);
+        }
+      }
+    );
+
+
+
+    //
+
+    //.GET QUERY, RETORNA UNA TABLA(SELECT)
+
+    // app.get("/api/reporte", async (req, res) => {
+    //   try {
+    //     const result = await pool
+    //       .request()
+    //       .query(
+    //         "SELECT TOP (1000) [numCubiculo],[numCarnet],[fechaReserv],[horaInicio],[horaFinal],[numReserva] FROM [BiblioTEC].[dbo].[Reservaciones]"
+    //       );
+
+    //     res.json(result.recordset);
+    //   } catch (error) {
+    //     console.error("Error executing SQL command:", error);
+    //     res.status(500).send("Error executing SQL command: " + error.message);
+    //   }
+    // });
+
+    // //.GET CON PARAMETROS, RETORNA TABLA(SELECT)
+    // app.get("/api/historial/:carnet", async (req, res) => {
+    //   try {
+    //     const carnet = req.params.carnet;
+    //     const result = await pool
+    //       .request()
+    //       .input("carnet", sql.BigInt, carnet)
+    //       .execute("sp_HistorialReservas");
+
+    //     res.json(result.recordset);
+    //   } catch (error) {
+    //     console.error("Error executing SQL command:", error);
+    //     res.status(500).send("Error executing SQL command: " + error.message);
+    //   }
+    // });
+
     const port = process.env.PORT || 3001;
     app.listen(port, () => {
       console.log(`Server is running on port ${port}`);

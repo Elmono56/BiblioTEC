@@ -6,8 +6,10 @@ import { saveAs } from "file-saver";
 import emailjs from 'emailjs-com';
 import "../menu.css";
 
+
 const ReservarCubiculo = () => {
   const navigate = useNavigate();
+
 
   const downloadQRCode = () => {
     const canvas = document.getElementById("qr-code");
@@ -82,21 +84,44 @@ const ReservarCubiculo = () => {
         console.error("Error al enviar el correo electrónico:", error);
       }
     );
-    navigate("/menu");
   };
 
-  return (
+
+  const [numPersonas, setNumPersonas] = useState("");
+  const [accesible, setAccesible] = useState(false);
+
+  const handleNumPersonasChange = (e) => {
+    setNumPersonas(e.target.value);
+  };
+
+  const handleAccesibleChange = (e) => {
+    setAccesible(e.target.checked);
+  };
+
+  const filtrar = async () => {
+    try {
+      const response = await fetch(`/api/filtrar/${numPersonas}/${accesible}`);
+      const data = await response.json();
+      // Do something with the data
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const handleFiltrarClick = (e) => {
+    e.preventDefault();
+    filtrar();
+  };
+
+
+  
+
+return (
     <>
       <TopBar />
       <section id="rsv-cub">
-        <h1 className="page-title">Reservar cubículo</h1>
-        {/*Formulario que pida el número de personas que van a usar el cubículo, un input tipo date y la hora*/}
+        <h1 className="page-title">Filtrar cubículo</h1>
         <form id="form-reservar" onSubmit={sendEmail}>
-          <label>Disponibles: </label><br></br>
-          <select name="cubDisponibles">
-          <option value>Selecciona un cubículo</option>
-          <option value=""></option>
-          </select><br></br>
           <label htmlFor="numPersonas">Número de personas</label>
           <br></br>
           <input
@@ -107,48 +132,40 @@ const ReservarCubiculo = () => {
             max="8"
             required
             className="UIReservar"
-          />
-          <label htmlFor="fecha">Fecha</label>
-          <br></br>
-          <input
-            type="date"
-            id="fecha"
-            name="fecha"
-            required
-            className="UIReservar"
-          />
-          <label htmlFor="hora">Hora</label>
-          <br></br>
-          <input
-            type="time"
-            id="hora"
-            name="hora"
-            required
-            className="UIReservar"
+            value={numPersonas}
+            onChange={handleNumPersonasChange}
           />
           <label htmlFor="accesible">
             Cubiculo accesible:
-            <input type="checkbox" name="accesible" id="accesible"/>
-            <br></br><br></br>
+            <input
+              type="checkbox"
+              name="accesible"
+              id="accesible"
+              checked={accesible}
+              onChange={handleAccesibleChange}
+            />
+            <br></br>
+            <br></br>
           </label>
         </form>
 
         <button
           className="est-chooseOption"
-          onClick={(e) => {
+          onClick={() => {
             downloadQRCode();
             sendEmail(e);
             generatePDF();
+            handleFiltrarClick();
           }}
         >
-          Reservar
+          Filtrar
         </button>
         <button onClick={() => navigate("/menu")} className="est-chooseOption">
           Regresar
         </button>
 
         <div style={{ display: "none" }}>
-          <QRCode value="https://www.google.com" id="qr-code" />
+          <QRCode value="https://www.tec.ac.cr/" id="qr-code" />
         </div>
       </section>
     </>

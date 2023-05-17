@@ -7,7 +7,7 @@ import "../menu.css";
 const ConsultarReservas = () => {
   const navigate = useNavigate();
   const [reservations, setReservations] = useState([]);
-  const [reservationNumber, setReservationNumber] = useState(1);
+  const [reservationNumber, setReservationNumber] = useState();
 
   const handleConsultarClick = async (e) => {
     
@@ -28,7 +28,7 @@ const ConsultarReservas = () => {
     e.preventDefault();
     try {
       const response = await axios.get(
-        "http://localhost:3001/api/consultarReserva"
+        `http://localhost:3001/api/consultarReservaEsp/${reservationNumber}`
       );
       setReservations(response.data);
     } catch (error) {
