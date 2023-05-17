@@ -1,19 +1,19 @@
 const express = require("express");
 const sql = require("mssql");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 const dbConfig = {
-  user: "biblioTEC",
-  password: "1234",
-  server: "localhost",
+  user: "Javier",
+  password: "Biblio15",
+  server: "bibliotec.database.windows.net",
   database: "BiblioTEC",
   options: {
-    enableArithAbort: true,
-    trustServerCertificate: true,
+    encrypt: true,
   },
 };
 
@@ -261,7 +261,8 @@ sql
     app.get(
       "/api/ModificarCubiculo/:idCubiculo/:nombre/:idEstado/:capacidad/:servEsp/:tiemposUso",
       async (req, res) => {
-        const { idCubiculo,nombre,idEstado,capacidad,servEsp,tiemposUso } = req.params;
+        const { idCubiculo, nombre, idEstado, capacidad, servEsp, tiemposUso } =
+          req.params;
         try {
           const result = await pool
             .request()
@@ -288,29 +289,23 @@ sql
 
     //FILTRAR
 
-
-    app.get(
-      "/api/filtrar/:capacidad/:servEsp",
-      async (req, res) => {
-        const {capacidad,servEsp} = req.params;
-        try {
-          const result = await pool
-            .request()
-            .input("capacidad", sql.Int, capacidad)
-            .input("servEsp", sql.Int, servEsp)
-            .output("outResultCode", sql.Int)
-            .execute("sp_FiltroCubiculo");
-            res.json(result.recordset);
-        } catch (error) {
-          console.error("Error executing stored procedure:", error);
-          res
-            .status(500)
-            .send("Error executing stored procedure: " + error.message);
-        }
+    app.get("/api/filtrar/:capacidad/:servEsp", async (req, res) => {
+      const { capacidad, servEsp } = req.params;
+      try {
+        const result = await pool
+          .request()
+          .input("capacidad", sql.Int, capacidad)
+          .input("servEsp", sql.Int, servEsp)
+          .output("outResultCode", sql.Int)
+          .execute("sp_FiltroCubiculo");
+        res.json(result.recordset);
+      } catch (error) {
+        console.error("Error executing stored procedure:", error);
+        res
+          .status(500)
+          .send("Error executing stored procedure: " + error.message);
       }
-    );
-
-
+    });
 
     //
 
@@ -347,6 +342,12 @@ sql
     //   }
     // });
 
+    app.use(express.static(path.join(__dirname, '../build')));
+
+    app.use(function(req, res, next) {
+      res.status(200).sendFile(path.join(__dirname, '../build', 'index.html'))
+    });
+    
     const port = process.env.PORT || 3001;
     app.listen(port, () => {
       console.log(`Server is running on port ${port}`);
@@ -355,3 +356,4 @@ sql
   .catch((error) => {
     console.error("Error connecting to SQL Server:", error);
   });
+

@@ -12,7 +12,7 @@ const HistorialReserva = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3001/api/historial/${carnet}`);
+                const response = await axios.get(`/api/historial/${carnet}`);
                 setReservations(response.data);
             } catch (error) {
                 console.error("Error fetching reservations:", error);

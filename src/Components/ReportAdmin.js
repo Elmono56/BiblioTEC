@@ -12,7 +12,7 @@ const ReportAdmin = () => {
   useEffect(() => {
     async function fetchUsers() {
       try {
-        const response = await axios.get(`http://localhost:3001/api/reservasEstudiante/${carnet}`);
+        const response = await axios.get(`/api/reservasEstudiante/${carnet}`);
         setUsers(response.data);
       } catch (error) {
         console.error('Error fetching users:', error);

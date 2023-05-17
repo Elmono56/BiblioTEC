@@ -23,7 +23,7 @@ const GestionReservas = () => {
     event.preventDefault();
     try {
       const response = await axios.get(
-        `http://localhost:3001/api/eliminarReserva/${numReserva}`
+        `/api/eliminarReserva/${numReserva}`
       );
       const resultado = response.data.result;
 

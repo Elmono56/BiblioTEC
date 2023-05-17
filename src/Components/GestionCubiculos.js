@@ -29,7 +29,7 @@ const GestionCubiculo = () => {
     e.preventDefault();
     try {
       const response = await axios.get(
-        `http://localhost:3001/api/agregarCubiculo/${status}/${capacity}/${id}/${name}`
+        `/api/agregarCubiculo/${status}/${capacity}/${id}/${name}`
       );
       const resultado = response.data.result;
 
@@ -46,7 +46,7 @@ const GestionCubiculo = () => {
     e.preventDefault();
     try {
       const response = await axios.get(
-        `http://localhost:3001/api/ModificarCubiculo/${numCubiculo}/${name}/${status}/${capacity}/${id}/${time}`
+        `/api/ModificarCubiculo/${numCubiculo}/${name}/${status}/${capacity}/${id}/${time}`
       );
       const resultado = response.data.result;
 
@@ -64,7 +64,7 @@ const GestionCubiculo = () => {
     e.preventDefault();
     try {
       const response = await axios.get(
-        `http://localhost:3001/api/eliminarCubiculo/${numCubiculo}`
+        `/api/eliminarCubiculo/${numCubiculo}`
       );
       const resultado = response.data.result;
 

@@ -23,7 +23,7 @@ const RegisterStudent = () => {
             const carnetInt = parseInt(carnet);
 
             const response = await axios.get(
-                `http://localhost:3001/api/login/${correo}/${apellido1}/${apellido2}/${nombre}/${carnetInt}/${fechaNacimiento}/${contrasena}/${cedulaInt}`
+                `/api/login/${correo}/${apellido1}/${apellido2}/${nombre}/${carnetInt}/${fechaNacimiento}/${contrasena}/${cedulaInt}`
             );
             const resultado = response.data.result;
 

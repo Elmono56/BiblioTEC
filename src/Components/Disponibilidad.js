@@ -13,7 +13,7 @@ const Disponibilidad = () => {
     e.preventDefault();
     try {
       const response = await axios.get(
-        `http://localhost:3001/api/disponibilidad/${selectedCubiculo}`
+        `/api/disponibilidad/${selectedCubiculo}`
       );
       const result = response.data.result;
       console.log("Output value:", result);
