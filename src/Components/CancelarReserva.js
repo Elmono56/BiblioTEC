@@ -14,7 +14,7 @@ const CancelarReserva = () => {
     e.preventDefault();
     try {
       const response = await axios.get(
-        `http://localhost:3001/api/reservacion/${numeroReserva}`
+        `/api/reservacion/${numeroReserva}`
       );
       const result = response.data.result;
       console.log("Output value:", result);

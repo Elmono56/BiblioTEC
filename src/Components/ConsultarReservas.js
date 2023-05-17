@@ -14,7 +14,7 @@ const ConsultarReservas = () => {
     e.preventDefault();
     try {
       const response = await axios.get(
-        "http://localhost:3001/api/consultarReserva"
+        "/api/consultarReserva"
       );
       setReservations(response.data);
     } catch (error) {
@@ -28,7 +28,7 @@ const ConsultarReservas = () => {
     e.preventDefault();
     try {
       const response = await axios.get(
-        `http://localhost:3001/api/consultarReservaEsp/${reservationNumber}`
+        `/api/consultarReservaEsp/${reservationNumber}`
       );
       setReservations(response.data);
     } catch (error) {

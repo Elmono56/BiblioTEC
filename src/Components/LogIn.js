@@ -11,7 +11,7 @@ const LogIn = () => {
   const handleClick = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/api/login/${username}/${password}`
+        `/api/login/${username}/${password}`
       );
       const isValid = response.data.result;
       return isValid;

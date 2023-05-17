@@ -17,7 +17,7 @@ const DeleteStudent = () => {
       const parsedStudentId = parseInt(studentId);
 
       const response = await axios.get(
-        `http://localhost:3001/api/eliminar/${parsedStudentId}`
+        `/api/eliminar/${parsedStudentId}`
       );
       const resultado = response.data.result;
 
