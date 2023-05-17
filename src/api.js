@@ -7,13 +7,12 @@ app.use(cors());
 app.use(express.json());
 
 const dbConfig = {
-  user: "biblioTEC",
-  password: "1234",
-  server: "localhost",
+  user: "Javier",
+  password: "Biblio15",
+  server: "bibliotec.database.windows.net",
   database: "BiblioTEC",
   options: {
-    enableArithAbort: true,
-    trustServerCertificate: true,
+    encrypt : true
   },
 };
 
