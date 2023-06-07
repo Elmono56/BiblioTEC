@@ -353,7 +353,7 @@ sql
       console.log(`Server is running on port ${port}`);
     });
   })
-  .catch((error) => {
+  .patch((error) => {
     console.error("Error connecting to SQL Server:", error);
-  });
+  }); 
 
