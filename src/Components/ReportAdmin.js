@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import TopBar from './TopBar';
-import '../menu.css';
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import TopBar from './TopBar'
+import '../menu.css'
 
 const ReportAdmin = () => {
-  const navigate = useNavigate();
-  const [users, setUsers] = useState([]);
-  const carnet = localStorage.getItem('carnet');
+  const navigate = useNavigate()
+  const [users, setUsers] = useState([])
+  const carnet = localStorage.getItem('carnet')
 
   useEffect(() => {
-    async function fetchUsers() {
+    async function fetchUsers () {
       try {
-        const response = await axios.get(`/api/reservasEstudiante/${carnet}`);
-        setUsers(response.data);
+        const response = await axios.get(`/api/reservasEstudiante/${carnet}`)
+        setUsers(response.data)
       } catch (error) {
-        console.error('Error fetching users:', error);
+        console.error('Error fetching users:', error)
       }
     }
-    fetchUsers();
-  }, []);
+    fetchUsers()
+  }, [])
 
   return (
     <>
-      <h1 className="page-title" style={{ marginLeft: 480 }}>
+      <h1 className='page-title' style={{ marginLeft: 480 }}>
         Informe de uso del cubículo
       </h1>
-      <div id="menu-btns">
-        <div id="report-content">
-          <table id="table">
+      <div id='menu-btns'>
+        <div id='report-content'>
+          <table id='table'>
             <thead>
               <tr>
                 <th>Número cubículo</th>
@@ -51,14 +51,14 @@ const ReportAdmin = () => {
             </tbody>
           </table>
         </div>
-        <br></br>
-        <button onClick={() => navigate('/menuAdmin/informeEstudiante')} className="est-chooseOption">
+        <br />
+        <button onClick={() => navigate('/menuAdmin/informeEstudiante')} className='est-chooseOption'>
           Regresar
         </button>
       </div>
       <TopBar />
     </>
-  );
-};
+  )
+}
 
-export default ReportAdmin;
+export default ReportAdmin

@@ -1,57 +1,54 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import TopBar from "./TopBar";
-import "../menu.css";
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import TopBar from './TopBar'
+import '../menu.css'
 
 const ConsultarReservas = () => {
-  const navigate = useNavigate();
-  const [reservations, setReservations] = useState([]);
-  const [reservationNumber, setReservationNumber] = useState();
+  const navigate = useNavigate()
+  const [reservations, setReservations] = useState([])
+  const [reservationNumber, setReservationNumber] = useState()
 
   const handleConsultarClick = async (e) => {
-    
-    e.preventDefault();
+    e.preventDefault()
     try {
       const response = await axios.get(
-        "/api/consultarReserva"
-      );
-      setReservations(response.data);
+        '/api/consultarReserva'
+      )
+      setReservations(response.data)
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
-  };
-
+  }
 
   const handleConsultarEspecifico = async (e) => {
-    
-    e.preventDefault();
+    e.preventDefault()
     try {
       const response = await axios.get(
         `/api/consultarReservaEsp/${reservationNumber}`
-      );
-      setReservations(response.data);
+      )
+      setReservations(response.data)
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
-  };
+  }
 
   const handleReservationNumberChange = (e) => {
-    setReservationNumber(e.target.value);
-  };
+    setReservationNumber(e.target.value)
+  }
 
   return (
     <>
       <TopBar />
-      <div id="menu-btns">
-        <h1 className="page-title">Consultar reservas</h1>
-        <form id="form-gestionReservas">
-          <label style={{ marginRight: "20px" }}>Número de reserva </label>
-          <br></br>
-          <input type="number" name="name" min={1} autoComplete="off" value={reservationNumber} onChange={handleReservationNumberChange} />
-          <br></br>
-          <br></br>
-          <table id="table">
+      <div id='menu-btns'>
+        <h1 className='page-title'>Consultar reservas</h1>
+        <form id='form-gestionReservas'>
+          <label style={{ marginRight: '20px' }}>Número de reserva </label>
+          <br />
+          <input type='number' name='name' min={1} autoComplete='off' value={reservationNumber} onChange={handleReservationNumberChange} />
+          <br />
+          <br />
+          <table id='table'>
             <thead>
               <tr>
                 <th>Número de carnet</th>
@@ -81,26 +78,26 @@ const ConsultarReservas = () => {
           <br />
           <button
             onClick={handleConsultarClick}
-            className="gestion-chooseOption"
+            className='gestion-chooseOption'
           >
             Consultar todos
           </button>
           <button
             onClick={handleConsultarEspecifico}
-            className="gestion-chooseOption"
+            className='gestion-chooseOption'
           >
             Consultar cubiculo
           </button>
           <button
-            onClick={() => navigate("/menuAdmin")}
-            className="gestion-chooseOption"
+            onClick={() => navigate('/menuAdmin')}
+            className='gestion-chooseOption'
           >
             Regresar
           </button>
         </form>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default ConsultarReservas;
+export default ConsultarReservas

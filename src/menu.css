@@ -3,24 +3,28 @@ body{
     overflow: auto;
   }
 #menu-btns{
-    position: relative;
-    margin-top: -2%; 
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
 }
-#menu-btns h1{ 
-  margin-left: 35%;
+
+.buttons-and-text-container {
+  display: flex;
+  flex-direction: column;
 }
 .est-chooseOption{
     background-color: #0e0637;
     color: white;
     border: none;
-    width: 10%;
     padding: 10px 20px;
     font-size: 16px;
+    min-width: 300px;
     border-radius: 5px;
-    margin-bottom: 1%;
     transition: transform 0.3s ease-in-out;
     font-family: "Roboto", sans-serif;
-    margin-left: 45%;
 }
 .est-chooseOption:hover {
     background-color: #6a5acd;
@@ -33,15 +37,19 @@ body{
   font-family: "Roboto", sans-serif;
   font-size: 45px;
   color: #0e0637;
-  margin-left: 38%;
-  margin-top: 15%;
+  text-align: center;
+  justify-content: center;
 }
 
 .gestion-btns{
   position: relative;
+  display: flex;
   margin-top: -2%;
   text-align: center;
   justify-content: center;
+  gap: 8px;
+  flex-direction: row;
+  flex-wrap: wrap;
   
 }
 #gestion-btns h1{ 
@@ -55,8 +63,7 @@ body{
   padding: 10px 20px;
   font-size: 16px;
   border-radius: 5px;
-  margin-bottom: 1%;
-  margin-right: 50px;
+  min-width: 150px;
   transition: transform 0.3s ease-in-out;
   font-family: "Roboto", sans-serif;
   display: inline-block;
@@ -219,6 +226,8 @@ width: 125px;
   cursor: pointer;
 }
 #mod-admin{
+  display: flex;
+  flex-direction: column;
   text-align: center;
   font-family: "Roboto", sans-serif;
 }
@@ -287,6 +296,7 @@ width: 125px;
 
 .container {
   display: flex;
+  padding-top: 24px;
   flex-direction: column;
   align-items: center;
 }

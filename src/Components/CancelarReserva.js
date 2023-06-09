@@ -1,61 +1,61 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import TopBar from "./TopBar";
-import "../menu.css";
-import axios from "axios";
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import TopBar from './TopBar'
+import '../menu.css'
+import axios from 'axios'
 
 const CancelarReserva = () => {
-  const navigate = useNavigate();
-  const navigateInfo = useNavigate();
-  const [numeroReserva, setNumeroReserva] = useState("");
-  const [message, setMessage] = useState("");
+  const navigate = useNavigate()
+  const navigateInfo = useNavigate()
+  const [numeroReserva, setNumeroReserva] = useState('')
+  const [message, setMessage] = useState('')
 
   const handleAceptar = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
       const response = await axios.get(
         `/api/reservacion/${numeroReserva}`
-      );
-      const result = response.data.result;
-      console.log("Output value:", result);
+      )
+      const result = response.data.result
+      console.log('Output value:', result)
       if (result === 1) {
-        setMessage("Cancelación exitosa");
+        setMessage('Cancelación exitosa')
       } else {
-        setMessage("El cubiculo no se encuentra reservado");
+        setMessage('El cubiculo no se encuentra reservado')
       }
     } catch (error) {
-      console.error("Error executing stored procedure:", error);
+      console.error('Error executing stored procedure:', error)
     }
-  };
+  }
 
   return (
     <>
       <TopBar />
-      <div id="menu-btns">
-        <h1 className="page-title">Cancelar Reserva</h1>
-        <form id="form-cancelar">
+      <div id='menu-btns'>
+        <h1 className='page-title'>Cancelar Reserva</h1>
+        <form id='form-cancelar'>
           <label>
-            Número de reserva: <br></br>
+            Número de reserva: <br />
             <input
-              type="number"
-              name="numeroReserva"
+              type='number'
+              name='numeroReserva'
               value={numeroReserva}
               onChange={(e) => setNumeroReserva(e.target.value)}
             />
-            <br></br>
-            <br></br>
+            <br />
+            <br />
           </label>
         </form>
-        <button onClick={handleAceptar} className="est-chooseOption">
+        <button onClick={handleAceptar} className='est-chooseOption'>
           Aceptar
         </button>
-        <button onClick={() => navigate("/menu")} className="est-chooseOption">
+        <button onClick={() => navigate('/menu')} className='est-chooseOption'>
           Regresar
         </button>
         {message && <p>{message}</p>}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default CancelarReserva;
+export default CancelarReserva
