@@ -119,41 +119,41 @@ const GestionReservas = () => {
             />
           </label>
           <div className='container'>
-            
-              Estado de reserva: <br />
-              <input
-                type='radio'
-                id='confirmado'
-                name='estado'
-                value='Confirmado'
-                className='radio-input'
-                checked={status === 'Confirmado'}
-                onChange={handleStatusChange}
-              />
-              <label>Confirmado</label>
-              <br />
-              <input
-                type='radio'
-                id='en espera'
-                name='estado'
-                value='En Espera'
-                className='radio-input'
-                checked={status === 'En Espera'}
-                onChange={handleStatusChange}
-              />
-              <label>En Espera</label>
-              <br />
-              <input
-                type='radio'
-                id='cancelado'
-                name='estado'
-                value='Cancelado'
-                className='radio-input'
-                checked={status === 'Cancelado'}
-                onChange={handleStatusChange}
-              />
-              <label>Cancelado</label>
-           
+
+            Estado de reserva: <br />
+            <input
+              type='radio'
+              id='confirmado'
+              name='estado'
+              value='Confirmado'
+              className='radio-input'
+              checked={status === 'Confirmado'}
+              onChange={handleStatusChange}
+            />
+            <label>Confirmado</label>
+            <br />
+            <input
+              type='radio'
+              id='en espera'
+              name='estado'
+              value='En Espera'
+              className='radio-input'
+              checked={status === 'En Espera'}
+              onChange={handleStatusChange}
+            />
+            <label>En Espera</label>
+            <br />
+            <input
+              type='radio'
+              id='cancelado'
+              name='estado'
+              value='Cancelado'
+              className='radio-input'
+              checked={status === 'Cancelado'}
+              onChange={handleStatusChange}
+            />
+            <label>Cancelado</label>
+
             <br />
           </div>
         </form>
